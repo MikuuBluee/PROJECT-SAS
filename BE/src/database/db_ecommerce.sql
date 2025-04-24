@@ -45,6 +45,16 @@ CREATE TABLE order_items(
 
 ALTER TABLE order_items ADD COLUMN is_temp BOOLEAN DEFAULT true;
 
+CREATE TABLE charts(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    product_id INT,
+    product_harga DECIMAL(10,2) NOT NULL,
+    jumlah_barang INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
+
 CREATE TABLE payments(
     id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT,
