@@ -5,11 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
         .logo{
             border: 2px solid black;
         }
+        .logo img {
+            width: 80px;
+        }
         .page-login{
             border: 2px solid black;
+        }
+        .page-login{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        .input-email-password{
+            margin: 0;
+            border: 2px solid black;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
         }
     </style>
 </head>
@@ -34,8 +53,8 @@
                     <input type="password" id="password" name="password" required><br><br>
                 </div>
                 <div class="teks-forge-password"><a href="#">Forget Password?</a></div>
-                <div class="button-sign-in"><button>Login</button></div>
             </div>
+            <div class="button-sign-in"><button>Login</button></div>
 
 
         </div>
