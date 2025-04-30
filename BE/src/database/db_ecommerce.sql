@@ -24,6 +24,14 @@ CREATE TABLE products(
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL
 );
 
+CREATE TABLE product_variants (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT,
+    size VARCHAR(20) NOT NULL,
+    stock INT NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
+
 CREATE TABLE orders(
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
@@ -44,6 +52,16 @@ CREATE TABLE order_items(
 );
 
 ALTER TABLE order_items ADD COLUMN is_temp BOOLEAN DEFAULT true;
+
+CREATE TABLE charts(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    product_id INT,
+    product_harga DECIMAL(10,2) NOT NULL,
+    jumlah_barang INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
 
 CREATE TABLE payments(
     id INT AUTO_INCREMENT PRIMARY KEY,
