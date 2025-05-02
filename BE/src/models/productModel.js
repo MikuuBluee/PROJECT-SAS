@@ -29,6 +29,23 @@ const product = {
 
     deleteProductById: (id, callback) => {
         db.query('DELETE FROM products WHERE id=?', [id], callback);
+    },
+
+    addSize: (data, callback) => {
+        const { product_id, size, stock } = data;
+        db.query(
+            'INSERT INTO product_variants (product_id, size, stock) VALUES (?, ?, ?)',
+            [product_id, size, stock],
+            callback
+        );
+    },
+
+    getSizeProduct: (product_id, callback) => {
+        db.query('SELECT * FROM product_variants', [product_id], callback);
+    },
+
+    deleteSize: (id, callback) => {
+        db.query('DELETE FROM product_variants WHERE id=?', [id], callback);
     }
 }
 
