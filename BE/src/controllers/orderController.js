@@ -98,14 +98,14 @@ const db = require('../config/db');
 // }
 
 exports.checkout = (req, res) => {
-    const { user_id, chart_ids } = req.body;
+    const { user_id, chart_id } = req.body;
 
-    if(!chart_ids || chart_ids.length === 0){
+    if(!chart_id || chart_id.length === 0){
         return res.status(400).json({ error: 'Tidak ada item yang dipilih untuk checkout' });
     }
 
-    const query = `SELECT * FROM charts WHERE id IN (${chart_ids.map(() => '?').join(',')})`;
-    db.query(query, chart_ids, (err, result) => {
+    const query = `SELECT * FROM charts WHERE id IN (${chart_id.map(() => '?').join(',')})`;
+    db.query(query, chart_id, (err, result) => {
         if(err) return res.status(500).json({ error: err.message });
 
         const total_harga =result.reduce((acc, item) => acc + (item.product_harga * item.jumlah_barang), 0);
@@ -114,7 +114,7 @@ exports.checkout = (req, res) => {
             user_id,
             total_harga,
             items: result,
-            chart_ids,
+            chart_id,
         };
 
         order.createOrder(orderData, (err2, createdOrder) => {

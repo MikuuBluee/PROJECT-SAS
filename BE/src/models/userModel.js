@@ -10,10 +10,10 @@ const user = {
     },
 
     createUser: (user, callback) => {
-        const { nama, email, password, telepon, alamat, role} = user;
+        const { nama, email, password, telepon, alamat} = user;
         db.query(
             "INSERT INTO users (nama, email, password, telepon, alamat, role) VALUES (?, ?, ?, ?, ?, ?)",
-            [nama, email, password, telepon, alamat, role],
+            [nama, email, password, telepon, alamat, 'user'],
             callback
         );
     },
