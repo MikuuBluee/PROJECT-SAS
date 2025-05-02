@@ -1,31 +1,33 @@
 const db =  require('../config/db');
 const { deleteChartItem } = require('./chartModel');
 
-// exports.addTempItem = (data, callback) => {
-//     const query = 'INSERT INTO order_items (product_id, quantity, subtotal, is_temp) VALUES (?, ?, ?, true)';
-//     db.query(query, [data.product_id, data.quantity, data.subtotal], callback);
-// };
+exports.createOrder = (orderData, callback) => {
+    const queryOrders = 'INSERT INTO orders (user_id, total_harga, status) VALUES (?, ?, ?)';
+    db.query(queryOrders, [orderData.user_id, orderData.total_harga, 'tertunda'], (err, result) => {
+        if(err) return callback(err);
 
-// exports.getTempitems = (callback) => {
-//     const query = `
-//     SELECT order_items.*, products.nama, products.harga
-//     FROM order_items
-//     JOIN products ON order_items.product_id = products.id
-//     WHERE is_temp = true`;
-//     db.query(query, callback);
-// };
+        const order_id = result.insertId;
 
-// exports.createOrders = (user_id, totalHarga, callback) => {
-//     const query = 'INSERT INTO orders (user_id, total_harga) VALUES (?, ?)';
-//     db.query(query, [user_id, totalHarga], callback);
-// };
+        const items = orderData.items.map(item => [
+            order_id,
+            item.variant_id,
+            item.product_harga * item.jumlah_barang
+        ]);
 
-// exports.clearTempItem = (id, callback) => {
-//     const query = 'DELETE FROM order_items WHERE id=?';
-//     db.query(query, [id], callback);
-// };
+        const queryItems = 'INSERT INTO order_items (order_id, variant_id, quantity, subtotal) VALUES ?';
+        db.query(queryItems, [items], (err2) => {
+            if(err2) return callback(err2);
 
-exports.finalizeItems = (orderId, callback) => {
-    const query = 'UPDATE order_items SET is_temp=false, order_id=?, WHERE is_temp=true';
-    db.query(query, [orderId], callback);
+            const chartId = orderData.chart_id;
+            if(chartId.length > 0){
+                const queryDeleteChart = `DELETE FROM charts WHERE id IN (${chartId.map(() => '?').join(',')})`;
+                db.query(queryDeleteChart, chartId, (err3) => {
+                    if(err3) return callback(err3);
+                    callback(null, { order_id });
+                });
+            }else{
+                callback(null, { order_id });
+            }
+        }); 
+    });
 };
