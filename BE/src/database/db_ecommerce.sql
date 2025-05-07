@@ -24,6 +24,14 @@ CREATE TABLE products(
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL
 );
 
+CREATE TABLE product_variants (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT,
+    size VARCHAR(20) NOT NULL,
+    stock INT NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
+
 CREATE TABLE orders(
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,

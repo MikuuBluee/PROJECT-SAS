@@ -54,3 +54,36 @@ exports.deleteProductById = (req, res) => {
         }
     })
 }
+
+exports.addSize = (req, res) => {
+    const size = req.body;
+    product.addSize(size, (err, result) => {
+        if(err){
+            res.status(500).json({ error:err.message });
+        }else{
+            res.status(201).json({ message: 'Add size success', });
+        }
+    })
+}
+
+exports.getSizeProduct = (req, res) => {
+    const { product_id } = req.params;
+    product.getSizeProduct(product_id, (err, result) => {
+        if(err){
+            res.status(500).json({ error: err.message });
+        }else{
+            res.json(result[0]);
+        }
+    })
+}
+
+exports.deleteSize = (req, res) => {
+    const { id } = req.params;
+    product.deleteSize(id, (err, result) => {
+        if(err){
+            res.status(500).json({ error: err.message });
+        }else{
+            res.status(201).json({ message: 'Size delete success' });
+        }
+    })
+}

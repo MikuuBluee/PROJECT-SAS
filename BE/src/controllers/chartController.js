@@ -1,10 +1,9 @@
 const chart = require('../models/chartModel');
-const db = require('../config/db');
 
 exports.addChartitem = (req, res) => {
-    const { user_id, product_id, jumlah_barang } = req.body;
+    const { user_id, variant_id, jumlah_barang } = req.body;
 
-        chart.addChartItem({ user_id, product_id, jumlah_barang }, (err, result) => {
+        chart.addChartItem({ user_id, variant_id, jumlah_barang }, (err, result) => {
             if(err){
                 res.status(500).json({ error: err.message });
             }else{
