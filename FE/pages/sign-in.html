@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme{
+          --color-wkwkw: #123458;
+          --color-template2 : #D4C9BE;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen flex item items-center justify-center bg-[url('/FE/assets/sky.jpg')] bg-cover bg-center bg-repeat">
+        <div class="w-full max-w-sm bg-blue-50 p-8 rounded-2xl shadow-xl/30 shadow-gray-950 flex flex-col item items-center justify-center space-y-4" >
+            <div class="bg-white rounded-lg p-3 w-14 flex item items-center justify-center shadow-xl/20">  
+                <img src="/FE/assets/arroww.png" alt="" width="50px" >
+            </div>
+            <h2 class="text-2xl font-bold text-center mb-8">Sign-in</h2>
+            <form action="#" method="POST" class="space-y-2 w-70">
+                <div>
+                    <input type="text" id="username" name="username" placeholder="👤 Username" required
+                        class="w-full px-4 py-2 bg-blue-100 rounded-lg shadow-sm shadow-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                </div>
+                <div>
+                    <input type="text" id="nomer" name="nomer" placeholder="📞 Nomer telepon" required
+                    class="w-full px-4 py-2 bg-blue-100 rounded-lg shadow-sm shadow-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                </div>
+                <div>
+                    <input type="email" id="email" name="email" placeholder="✉️ email" required
+                    class="w-full px-4 py-2 bg-blue-100 rounded-lg shadow-sm shadow-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                </div>
+                <div>
+                    <input type="password" id="password" name="password" placeholder="🔒 password" required
+                    class="w-full px-4 py-2 bg-blue-100 rounded-lg shadow-sm shadow-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                </div>
+                <div>
+                    <input type="text" id="alamat" name="alamat" placeholder="🏠 Alamat" required
+                        class="w-full px-4 py-2 bg-blue-100 rounded-lg shadow-sm shadow-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                </div>
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center text-sm text-gray-600"></label>
+                    <!-- <a href="#" class="text-sm text-blue-500 hover:underline">Lupa password?</a> -->
+                </div>
+                <button type="submit"
+                class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200">
+                Masuk
+                </button>
+                <p class="text-center text-sm text-gray-600 mt-6">
+                    Sudah punya akun? ayo
+                    <a href="login.html" class="text-blue-500 hover:underline">Login</a>
+                </p>
+            </form>
+            
+        </div>
+    </div>
+</body>
+</html>

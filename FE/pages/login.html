@@ -4,45 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-        .logo{
-            border: 2px solid black;
-        }
-        .page-login{
-            border: 2px solid black;
-        }
-    
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
-    <div class="container">
-        <!-- page logo -->
-        <div class="logo"><img src="assets/logo_Aerostreet.png alt=""></div>
-
-        <!-- page login -->
-        <div class="page-login">
-            <div class="picture-login"><img src="picture-login/fff&text=login.png" alt=""></div>
-
-            <div class="teks"><p>Sign In With Email</p></div>
-
-            <div class="input-email-password">
-                <div class="email">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required><br><br>
-                </div>
-                <div class="password">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required><br><br>
-                </div>
-                <div class="teks-forge-password"><a href="#">Forget Password?</a></div>
+    <div class="min-h-screen flex item items-center justify-center bg-[url('/FE/assets/sky.jpg')] h-screen bg-cover bg-center">
+        <div class="w-full max-w-sm bg-blue-50 p-8 rounded-2xl shadow-xl/40 flex flex-col i123458tem items-center justify-center space-y-4" >
+            <div class="bg-white rounded-lg p-3 w-14 flex item items-center justify-center shadow-xl/20">
+                <img src="/FE/assets/arroww.png" alt="" width="50px" >
             </div>
-            <div class="button-sign-in"><button>Login</button></div>
-
-
+            <h2 class="text-2xl font-bold text-center mb-8">Login</h2>
+            <form action="#" method="POST" class="space-y-2 w-70">
+                <div>
+                    <input type="email" id="email" name="email" placeholder="✉️ email" required
+                        class="w-full px-4 py-2 bg-blue-100 rounded-lg shadow-sm shadow-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                </div>
+                <div>
+                    <input type="password" id="password" name="password" placeholder="🔒 password" required
+                        class="w-full px-4 py-2 bg-blue-100 rounded-lg shadow-sm shadow-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                </div>
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center text-sm text-gray-600"></label>
+                    <a href="#" class="text-sm text-blue-500 hover:underline">Lupa password?</a>
+                </div>
+                <button type="submit"
+                class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200">
+                Masuk
+                </button>
+                <p class="text-center text-sm text-gray-600 mt-6">
+                    Belum punya akun? ayo
+                    <a href="sign-in.html" class="text-blue-500 hover:underline">Daftar</a>
+                </p>
+            </form>
+            
         </div>
     </div>
 </body>
