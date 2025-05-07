@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kelolah Akun</title>
+  <title>Kelolah Kategori</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -181,7 +181,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Kelolah Akun</h1>
+            <h1 class="m-0">Kelolah Kategori</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -200,7 +200,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="card">
           <div class="card-header">
             <h3 class="card-title"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-tambah">
-              Tambah Akun
+              Tambah Kategori
             </button></h3>
 
             <div class="card-tools">
@@ -222,11 +222,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tr>
                   <th>No</th>
                   <th>ID</th>
-                  <th>Username</th>
-                  <th>Nomer Telepon</th>
-                  <th>Email</th>
-                  <th>Password</th>
-                  <th>Alamat</th>
+                  <th>Nama Kategori</th>
                   <th>Aksi</th>
                   <th></th>
                 </tr>
@@ -235,11 +231,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tr>
                   <td>1</td>
                   <td>21</td>
-                  <td>Abdi Maulana</td>
-                  <td>085463254875</td>
-                  <td>abdimaulana@gmail.com</td>
-                  <td>abdimaulana123</td>
-                  <td>Jl kandeman</td>
+                  <td>Atasan</td>
                   <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-edit">
                     Edit
                   </button></td>
@@ -261,7 +253,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Tambah Akun</h4>
+          <h4 class="modal-title">Tambah Kategori</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -273,25 +265,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <form>
               <div class="card-body">
                 <div class="form-group">
-                  <label for="tambahUsername">Username</label>
-                  <input type="text" class="form-control" id="tambahUsername" placeholder="Abdimaulana" required>
-                </div>
-                <div class="form-group">
-                  <label for="tambahNomerTelepon">Nomer Telepon</label>
-                  <input type="number" class="form-control" id="tambahNomerTelepon" placeholder="0822154245" required>
-                </div>
-                <div class="form-group">
-                  <label for="tambahPassword">Password</label>
-                  <input type="password" class="form-control" id="tambahPassword" placeholder="abdimaulana123" required>
-                </div>
-                <div class="form-group">
-                    <label for="tambahAlamat">Alamat</label>
-                    <textarea name="tambahAlamat" rows="8" cols="50" id="tambahAlamat" type="text" required placeholder="Jl kandeman"></textarea>
-                  </div>
-              </div>
+                  <label for="tambahKategori">Nama Kategori</label>
+                  <input type="text" class="form-control" id="tambahKategori" placeholder="Atasan" required>
               <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary">Tambahkan Akun</button>
+                <button type="button" class="btn btn-primary">Tambahkan Kategori</button>
+              </div>
+              </div>
               </div>
             </form>
           </div>
@@ -308,7 +288,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Edit Akun</h4>
+              <h4 class="modal-title">Edit Kategori</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -320,21 +300,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <form>
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="editUsername">Username</label>
-                      <input type="text" class="form-control" id="editUsername" placeholder="Abdimaulana" required>
+                      <label for="editUsername">Nama Kategori</label>
+                      <input type="text" class="form-control" id="editUsername" placeholder="Atasan" required>
                     </div>
-                    <div class="form-group">
-                      <label for="editNomerTelepon">Nomer Telepon</label>
-                      <input type="number" class="form-control" id="editNomerTelepon" placeholder="0822154245" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="editPassword">Password</label>
-                      <input type="password" class="form-control" id="editPassword" placeholder="abdimaulana123" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="editAlamat">Alamat</label>
-                        <textarea name="editAlamat" rows="8" cols="50" id="editAlamat" type="text" required placeholder="Jl kandeman"></textarea>
-                      </div>
                   </div>
                   <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
