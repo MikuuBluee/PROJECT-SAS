@@ -44,33 +44,37 @@ CREATE TABLE orders(
 CREATE TABLE order_items(
     id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT,
-    product_id INT,
+    variant_id INT,
     quantity INT NOT NULL,
     subtotal DECIMAL(10,2) NOT NULL,
     FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
-    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+    FOREIGN KEY (variant_id) REFERENCES product_variants(id) ON DELETE CASCADE
 );
-
-ALTER TABLE order_items ADD COLUMN is_temp BOOLEAN DEFAULT true;
 
 CREATE TABLE charts(
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
-    product_id INT,
+    variant_id INT,
     product_harga DECIMAL(10,2) NOT NULL,
     jumlah_barang INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+    FOREIGN KEY (variant_id) REFERENCES product_variants(id) ON DELETE CASCADE
 );
 
 CREATE TABLE payments(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    order_id INT,
-    method ENUM('QRIS', 'Bank Transfer', 'COD') NOT NULL,
-    payment_proof VARCHAR(255),
-    status ENUM('tertunda', 'dikonfirmasi', 'gagal') DEFAULT 'tertunda',
+    order_id INT NOT NULL,
+    midtrans_order_id VARCHAR(50) NOT NULL,
+    jumlah_transaksi INT NOT NULL,
+    method ENUM('QRIS', 'Bank Transfer') NOT NULL,
+    bukti_pembayaran VARCHAR(255),
+    token_snap TEXT,
+    redirect_url TEXT,
+    status ENUM('tertunda', 'penyelesaian', 'kadaluwarsa', 'batal', 'ditolak', 'gagal') DEFAULT 'tertunda',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
 );
+
 
 CREATE TABLE shipping(
     id INT AUTO_INCREMENT PRIMARY KEY,

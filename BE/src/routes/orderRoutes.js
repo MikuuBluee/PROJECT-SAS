@@ -11,5 +11,6 @@ const orderController = require('../controllers/orderController');
 // router.delete('/order/:id', orderController.clearOrderById);
 // router.delete('/chart/:id', orderController.deleteChartById);
 router.post('/checkout', orderController.checkout);
+router.get('/', orderController.getDetailOrder);
 
 module.exports = router;

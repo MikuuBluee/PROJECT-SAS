@@ -27,7 +27,7 @@ exports.createProduct = (req, res) => {
         if(err){
             res.status(500).json({ error: err.message });
         } else{
-            res.status(201).json({ message: 'Product Created Successfully', userId: result.insertId});
+            res.status(201).json({ message: 'Product Created Successfully'});
         }
     })
 }
@@ -67,8 +67,7 @@ exports.addSize = (req, res) => {
 }
 
 exports.getSizeProduct = (req, res) => {
-    const { product_id } = req.params;
-    product.getSizeProduct(product_id, (err, result) => {
+    product.getSizeProduct((err, result) => {
         if(err){
             res.status(500).json({ error: err.message });
         }else{
