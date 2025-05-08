@@ -1,13 +1,14 @@
 const midtransClient = require('midtrans-client');
 const paymentModel = require('../models/paymentModel');
 const userModel = require('../models/userModel');
+require('dotenv').config();
 
 let snap = new midtransClient.Snap({
     isProduction: false,
-    serverKey: 'SB-Mid-server-XcBiNR07gsIqQujX53_OmhnL',
-    clientKey: 'SB-Mid-client-o7wo4enBNocWz-lC'
-    // serverKey: 'Mid-server-mIDe4Xc46zy7F0_la4Rc19Iz',
-    // clientKey: 'Mid-client-DhzFbU7-gBWPYbI6'
+    serverKey: process.env.MIDTRANS_SERVER_KEY_SANDBOX,
+    clientKey: process.env.MIDTRANS_CLIENT_KEY_SANDBOX
+    // serverKey: process.env.MIDTRANS_SERVER_KEY_PRODUCTION,
+    // clientKey: process.env.MIDTRANS_CLIENT_KEY_PRODUCTION
 });
 
 exports.createPayment = (req, res) => {
