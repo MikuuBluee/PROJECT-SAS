@@ -5,10 +5,8 @@ require('dotenv').config();
 
 let snap = new midtransClient.Snap({
     isProduction: false,
-    serverKey: process.env.MIDTRANS_SERVER_KEY_SANDBOX,
-    clientKey: process.env.MIDTRANS_CLIENT_KEY_SANDBOX
-    // serverKey: process.env.MIDTRANS_SERVER_KEY_PRODUCTION,
-    // clientKey: process.env.MIDTRANS_CLIENT_KEY_PRODUCTION
+    serverKey: "xxxxxxxxx",
+    clientKey: "xxxxxxxxx"
 });
 
 exports.createPayment = (req, res) => {
