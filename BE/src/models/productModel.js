@@ -40,8 +40,8 @@ const product = {
         );
     },
 
-    getSizeProduct: (product_id, callback) => {
-        db.query('SELECT * FROM product_variants', [product_id], callback);
+    getSizeProduct: (callback) => {
+        db.query('SELECT * FROM product_variants', callback);
     },
 
     deleteSize: (id, callback) => {

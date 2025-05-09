@@ -28,3 +28,10 @@ exports.checkout = (req, res) => {
         });
     });
 };
+
+exports.getDetailOrder = (req, res) => {
+    order.getDetailOrder((err, result) => {
+        if(err) return res.status(500).json({ error: err.message });
+        res.json(result);
+    })
+}

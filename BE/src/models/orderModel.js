@@ -11,6 +11,7 @@ exports.createOrder = (orderData, callback) => {
         const items = orderData.items.map(item => [
             order_id,
             item.variant_id,
+            item.jumlah_barang,
             item.product_harga * item.jumlah_barang
         ]);
 
@@ -31,3 +32,8 @@ exports.createOrder = (orderData, callback) => {
         }); 
     });
 };
+
+exports.getDetailOrder = (callback) => {
+    const query = 'SELECT * FROM order_items';
+    db.query(query, callback);
+}
