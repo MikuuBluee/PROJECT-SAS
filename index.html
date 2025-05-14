@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aerostreet</title>
+    <link rel="icon" type="image/png" href="assets/logo.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style type="text/tailwindcss">
+        @layer utilities{
+            .text-stroke {
+                -webkit-text-stroke: 1px rgb(255, 255, 255);
+                color: transparent;
+            }
+            .text-stroke-2 {
+                -webkit-text-stroke: 1px rgb(0, 0, 0);
+                color: transparent;
+            }
+            
+            
+            .category-card {
+                transition: transform 0.3s ease;
+            }
+            
+            .category-card:hover {
+                transform: translateY(-10px);
+            }
+        }
+</style>
+</head>
+<body class="font-[poppins]">
+    <!-- Navigation -->
+  <nav id="navbar" class="bg-white py-4 fixed top-0 left-0 w-full bg-opacity-100 shadow transition-all duration-300 z-50">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <div class="flex items-center">
+        <a href="#" class="flex items-center">
+          <img src="assets/logo-1.png" alt="" class="w-40">
+        </a>
+      </div>
+
+      <!-- Hamburger Mobile -->
+      <div class="md:hidden flex items-center mr-10">
+        <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+
+ 
+      <div class="hidden md:flex items-center space-x-8">
+        <ul class="flex items-center space-x-8">
+          <li class="relative group">
+            <a href="#category">
+              <button class="hover:text-blue-500 font-medium">Category</button>
+            </a>
+            <ul class="absolute left-0 mt-2 bg-white border rounded shadow-md opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform transition duration-200 invisible group-hover:visible">
+              <li><a href="top.html" class="block px-4 py-2 hover:bg-gray-100">Top</a></li>
+              <li><a href="bottom.html" class="block px-4 py-2 hover:bg-gray-100">Bottom</a></li>
+              <li><a href="footwear.html" class="block px-4 py-2 hover:bg-gray-100">Footwear</a></li>
+            </ul>
+          </li>
+          <li><a href="#hero" class="font-medium">Home</a></li>
+          <li><a href="#populer" class="font-medium">Populer</a></li>
+          <li><a href="login.html" class="font-medium bg-blue-950 w-20 text-center items-center py-2 rounded-lg px-3 text-white">Login</a></li>
+        </ul>
+      </div>
+
+      <!-- Search, account, cart -->
+      <div class="hidden md:flex items-center space-x-6">
+        <form id="search" class="relative" onsubmit="return true;">
+          <div class="relative">
+            <input type="text" id="searchInput" placeholder="Search Product" class="pl-4 pr-10 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-transparent w-64">
+            <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
+              <i class="fas fa-search text-gray-400"></i>
+            </button>
+          </div>
+        </form>
+        <a href="profil.html" class="flex items-center">
+          <i class="far fa-user mr-1"></i>
+          <span>Account</span>
+        </a>
+        <a href="#" class="flex items-center">
+          <i class="fas fa-shopping-cart mr-1"></i>
+          <span>Cart</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Menu -->
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+      <ul class="space-y-2">
+        <li class="relative group">
+          <button class="hover:text-blue-500 font-medium w-full text-left">Category</button>
+          <ul class="mt-2 bg-white border rounded shadow-md">
+            <li><a href="top.html" class="block px-4 py-2 hover:bg-gray-100">Top</a></li>
+            <li><a href="bottom.html" class="block px-4 py-2 hover:bg-gray-100">Bottom</a></li>
+            <li><a href="footwear.html" class="block px-4 py-2 hover:bg-gray-100">Footwear</a></li>
+          </ul>
+        </li>
+        <li><a href="#hero" class="block font-medium">Home</a></li>
+        <li><a href="#populer" class="block font-medium">Populer</a></li>
+        <li><a href="login.html" class="block font-medium bg-blue-950 w-full text-center py-2 rounded-full text-white">Login</a></li>
+        <li>
+          <form class="mt-2 relative">
+            <input type="text" placeholder="Search Product" class="pl-4 pr-10 py-2 w-full rounded-full border border-gray-300 focus:outline-none">
+            <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
+              <i class="fas fa-search text-gray-400"></i>
+            </button>
+          </form>
+        </li>
+        <li><a href="profil.html" class="flex items-center mt-2"><i class="far fa-user mr-1"></i><span>Account</span></a></li>
+        <li><a href="cart.html" class="flex items-center"><i class="fas fa-shopping-cart mr-1"></i><span>Cart</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden mt-10" id="hero">
+        <div class="container mx-auto rounded-md">
+            <div class="swiper heroSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide h-fit">
+                        <img src="assets/slid-1.jpg" alt="Banner 1" class="w-full  object-cover ">
+                    </div>
+                    <div class="swiper-slide h-fit">
+                        <img src="assets/slide-2.png" alt="Banner 2" class="w-full  object-cover">
+                    </div>
+                    <div class="swiper-slide h-fit">
+                        <img src="assets/slide-3.png" alt="Banner 3" class="w-full object-cover">
+                    </div>
+                </div>               
+            </div>
+    </section>
+    <!-- Category -->
+    <section id="category">
+        <div class="container mx-auto px-2 py-16  ">
+            <h2 class="text-5xl text-primary-green mb-8 text-center text-stroke-2 uppercase font-extrabold">Category</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 ">  
+                    <div class="category-card bg-white rounded-lg p-6  flex flex-col items-center transition-transform duration-300 ">
+                        <p class="text-4xl font-bold text-stroke animate-pulse uppercase absolute ">Top</p>
+                        <a href="top.html"><img src="assets/ct-1.png" alt="Category 1" class="mb-4 rounded-md" ></a>
+                    </div>
+                         
+                    <div class="category-card bg-white rounded-lg  p-6 flex flex-col items-center transition-transform duration-300 ">
+                        <p class="text-4xl font-bold text-stroke animate-pulse uppercase absolute">Footwear</p>
+                        <a href="footwear.html"><img src="assets/ct-3.png" alt="Category 2" class="mb-4 rounded-md"></a>
+                    </div>
+                       
+                    <div class="category-card bg-white rounded-lg  p-6 flex flex-col items-center transition-transform duration-300 ">
+                        <p class="text-4xl font-bold text-stroke animate-pulse uppercase absolute">Bottom</p>
+                        <a href="bottom.html"><img src="assets/ct-2.png" alt="Category 3" class="mb-4 rounded-md"></a>
+                    </div>      
+                </div>
+        </div>
+    </section>
+    <!-- Best Seller -->
+    <section class="px-6 py-12 " id="populer">
+        <h2 class="text-5xl text-stroke-2 uppercase font-extrabold text-center justify-center mb-10">Paling populer</h2>
+    
+        <div id="scrollContainer"
+             class="flex gap-6 overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing scroll-smooth mb-4">
+
+             <!-- Card-1 -->
+          <div class="min-w-[300px] bg-white rounded-xl shadow p-4 flex-shrink-0">
+            <div class="relative">
+              <img src="assets/AerostreetXonepiece.png" alt="HomePod mini" class="rounded-lg w-[400px]" />
+              <button class="absolute top-2 right-2 bg-white rounded-full p-2 shadow">
+                ❤️
+              </button>
+            </div>
+            <h3 class="text-lg font-semibold mt-4">Aerostreet X One Piece</h3>
+            <p class="text-sm text-gray-500">Be a king of Pirate</p>
+            <div class="flex items-center gap-1 mt-2">
+              <span class="text-green-500">★★★★★</span>
+              <span class="text-sm text-gray-500">(1.221)</span>
+            </div>
+            <div class="flex items-center justify-between mt-4">
+              <span class="font-bold text-lg">Rp 239.<sup>00</sup></span>
+              <button class="border px-4 py-1 rounded-full hover:bg-gray-100">Add to Cart</button>
+            </div>
+          </div>
+    
+         <!-- card-2 -->
+          <div class="min-w-[300px] bg-white rounded-xl shadow p-4 flex-shrink-0">
+            <div class="relative">
+              <img src="assets/x-Joker.png" alt="Instax Mini 9" class="rounded-lg w-[400px]" />
+              <button class="absolute top-2 right-2 bg-white rounded-full p-2 shadow">
+                ❤️
+              </button>
+            </div>
+            <h3 class="text-lg font-semibold mt-4">Aerostreet X Joker</h3>
+            <p class="text-sm text-gray-500">bad people are good people who are hurt</p>
+            <div class="flex items-center gap-1 mt-2">
+              <span class="text-green-500">★★★★★</span>
+              <span class="text-sm text-gray-500">(2.400)</span>
+            </div>
+            <div class="flex items-center justify-between mt-4">
+              <span class="font-bold text-lg">$99.<sup>00</sup></span>
+              <button class="border px-4 py-1 rounded-full hover:bg-gray-100">Add to Cart</button>
+            </div>
+          </div>
+    
+          <!-- card-3 -->
+          <div class="min-w-[300px] bg-white rounded-xl shadow p-4 flex-shrink-0">
+            <div class="relative">
+              <img src="assets/baju-no-bg.png" alt="Duffel Bag" class="rounded-lg w-[400px]" />
+              <button class="absolute top-2 right-2 bg-white rounded-full p-2 shadow">
+                ❤️
+              </button>
+            </div>
+            <h3 class="text-lg font-semibold mt-4">Base Camp Duffel M</h3>
+            <p class="text-sm text-gray-500">Table with air purifier, stained veneer/black</p>
+            <div class="flex items-center gap-1 mt-2">
+              <span class="text-green-500">★★★★★</span>
+              <span class="text-sm text-gray-500">(121)</span>
+            </div>
+            <div class="flex items-center justify-between mt-4">
+              <span class="font-bold text-lg">$159.<sup>00</sup></span>
+              <button class="border px-4 py-1 rounded-full hover:bg-gray-100">Add to Cart</button>
+            </div>
+          </div>
+          <!-- Card-4 -->
+          <div class="min-w-[300px] bg-white rounded-xl shadow p-4 flex-shrink-0">
+            <div class="relative">
+              <img src="assets/baju-2-no-bg.png" alt="Duffel Bag" class="rounded-lg w-[400px]" />
+              <button class="absolute top-2 right-2 bg-white rounded-full p-2 shadow">
+                ❤️
+              </button>
+            </div>
+            <h3 class="text-lg font-semibold mt-4">Base Camp Duffel M</h3>
+            <p class="text-sm text-gray-500">Table with air purifier, stained veneer/black</p>
+            <div class="flex items-center gap-1 mt-2">
+              <span class="text-green-500">★★★★★</span>
+              <span class="text-sm text-gray-500">(121)</span>
+            </div>
+            <div class="flex items-center justify-between mt-4">
+              <span class="font-bold text-lg">$159.<sup>00</sup></span>
+              <button class="border px-4 py-1 rounded-full hover:bg-gray-100">Add to Cart</button>
+            </div>
+          </div>
+           <!-- Card-5 -->
+           <div class="min-w-[300px] bg-white rounded-xl shadow p-4 flex-shrink-0">
+            <div class="relative">
+              <img src="assets/celana-removebg-preview.png" alt="Duffel Bag" class="rounded-lg w-[400px]" />
+              <button class="absolute top-2 right-2 bg-white rounded-full p-2 shadow">
+                ❤️
+              </button>
+            </div>
+            <h3 class="text-lg font-semibold mt-4">Base Camp Duffel M</h3>
+            <p class="text-sm text-gray-500">Table with air purifier, stained veneer/black</p>
+            <div class="flex items-center gap-1 mt-2">
+              <span class="text-green-500">★★★★★</span>
+              <span class="text-sm text-gray-500">(121)</span>
+            </div>
+            <div class="flex items-center justify-between mt-4">
+              <span class="font-bold text-lg">$159.<sup>00</sup></span>
+              <button class="border px-4 py-1 rounded-full hover:bg-gray-100">Add to Cart</button>
+            </div>
+          </div>
+           <!-- Card-6 -->
+           <div class="min-w-[300px] bg-white rounded-xl shadow p-4 flex-shrink-0">
+            <div class="relative">
+              <img src="assets/celna.webp" alt="Duffel Bag" class="rounded-lg w-[400px]" />
+              <button class="absolute top-2 right-2 bg-white rounded-full p-2 shadow">
+                ❤️
+              </button>
+            </div>
+            <h3 class="text-lg font-semibold mt-4">Base Camp Duffel M</h3>
+            <p class="text-sm text-gray-500">Table with air purifier, stained veneer/black</p>
+            <div class="flex items-center gap-1 mt-2">
+              <span class="text-green-500">★★★★★</span>
+              <span class="text-sm text-gray-500">(121)</span>
+            </div>
+            <div class="flex items-center justify-between mt-4">
+              <span class="font-bold text-lg">$159.<sup>00</sup></span>
+              <button class="border px-4 py-1 rounded-full hover:bg-gray-100">Add to Cart</button>
+            </div>
+          </div>
+    
+        </div>
+    </section>
+    <!-- ulasan -->
+     <section class="bg-white py-16">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-extrabold text-center mb-10 text-stroke-2 uppercase ">Ulasan</h2>
+            <div class="flex items-center justify-center mx-auto">
+              <!-- Testimoni Card 1-->
+              <div class="mx-3 bg-white text-black rounded-xl p-6 max-w-sm shadow-lg">
+                <div class="flex space-x-1 mb-4 text-yellow-400">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="text-sm mb-4">
+                  "Sangat Keren Product nya saya sangat suka sekali dengan kualitas nya yang sangat bagus dan harganya yang sangat murah"
+                </p>
+                <div class="flex items-center mt-4">
+                  <img src="/assets/pp-anime-4.jpg" alt="Olivia" class="w-10 h-10 rounded-full mr-3">
+                  <div>
+                    <h4 class="text-sm font-semibold">Dicky Widya P.</h4>
+                    <p class="text-xs text-gray-500">Programer</p>
+                  </div>
+                </div>
+              </div>
+
+               <!-- Testimoni Card 2-->
+              <div class="mx-3 bg-white text-black rounded-xl p-6 max-w-sm shadow-lg">
+                <div class="flex space-x-1 mb-4 text-yellow-400">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="text-sm mb-4">
+                  "Sepatu nya sangat nyaman dan kualitasnya juara"
+                </p>
+                <div class="flex items-center mt-4">
+                  <img src="assets/pp-anime-3.jpg" alt="Olivia" class="w-10 h-10 rounded-full mr-3">
+                  <div>
+                    <h4 class="text-sm font-semibold">Erzha fadhilla P</h4>
+                    <p class="text-xs text-gray-500">Brain Rot OFC</p>
+                  </div>
+                </div>
+              </div>
+
+               <!-- Testimoni Card 3-->
+              <div class="mx-3 bg-white text-black rounded-xl p-6 max-w-sm shadow-lg">
+                <div class="flex space-x-1 mb-4 text-yellow-400">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <p class="text-sm mb-4">
+                  "Celananya sangat bagus dan harganya murah sekali"
+                </p>
+                <div class="flex items-center mt-4">
+                  <img src="assets/pp-anime-2.jpg" alt="Olivia" class="w-10 h-10 rounded-full mr-3">
+                  <div>
+                    <h4 class="text-sm font-semibold">Bayu Surya Dinata</h4>
+                    <p class="text-xs text-gray-500">AI Master</p>
+                  </div>
+                </div>
+              </div>
+
+               <!-- Testimoni Card 4-->
+              <div class="mx-3 bg-white text-black rounded-xl p-6 max-w-sm shadow-lg">
+                <div class="flex space-x-1 mb-4 text-yellow-400">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="text-sm mb-4">
+                  "Aku suka kualitas baju nya , sangat bagus dan nyaman"
+                </p>
+                <div class="flex items-center mt-4">
+                  <img src="assets/pp-anime-1.jpg" alt="Olivia" class="w-10 h-10 rounded-full mr-3">
+                  <div>
+                    <h4 class="text-sm font-semibold">Rejo Wiranata</h4>
+                    <p class="text-xs text-gray-500">Interpreneur</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-200 mt-10 -my-10">
+  <div class="container mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+    
+    <!-- Logo & Deskripsi -->
+    <div>
+      <img src="assets/logo-1-white.png" alt="Logo" class="w-32 mb-4">
+      <p class="text-sm">Aerostreet menghadirkan produk berkualitas tinggi dengan desain terkini untuk memenuhi kebutuhan gaya hidup Anda.</p>
+    </div>
+
+    <!-- Navigasi -->
+    <div>
+      <h4 class="font-semibold text-lg mb-4">Navigasi</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href="#hero" class="hover:text-blue-500">Beranda</a></li>
+        <li><a href="#populer" class="hover:text-blue-500">Populer</a></li>
+        <li><a href="#category" class="hover:text-blue-500">Kategori</a></li>
+        <li><a href="login.html" class="hover:text-blue-500">Login</a></li>
+      </ul>
+    </div>
+
+    <!-- Kontak -->
+    <div>
+      <h4 class="font-semibold text-lg mb-4">Kontak Kami</h4>
+      <ul class="space-y-2 text-sm">
+        <li>Email: support@aerostreet.id</li>
+        <li>Telepon: +62 895 3431 19583</li>
+        <li>Alamat: Batang, Jawa Tengah</li>
+      </ul>
+    </div>
+
+    <!-- Sosial Media -->
+    <div>
+      <h4 class="font-semibold text-lg mb-4">Ikuti Kami</h4>
+      <div class="flex space-x-4">
+        <a href="#" class="hover:text-blue-500"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="hover:text-pink-500"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="hover:text-red-600"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-gray-300 dark:border-gray-700 mt-10 text-center py-4 text-sm">
+    &copy; 2025 Aerostreet. All rights reserved.
+  </div>
+    </footer>
+
+  
+    
+     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+     <script src="main.js"></script>
+ </body>
+ </html>
