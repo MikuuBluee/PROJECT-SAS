@@ -7,93 +7,96 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-pink-100 p-6 font-sans">
-  <div class="max-w-6xl mx-auto bg-white shadow-xl rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-3 gap-4 p-6">
-    
-    <!-- Cart Section -->
-    <div class="md:col-span-2">
-      <h2 class="text-xl font-bold mb-4">Keranjang Belanja</h2>
-      <div class="space-y-4" id="cart">
-        <!-- Item 1 -->
-        <div class="flex items-center justify-between border-b pb-4" data-price="400000" data-discount="0.2">
-          <div class="flex items-center gap-4">
-            <img src="img/mario.jpg" alt="Black Shirt" class="w-20 h-20 rounded">
-            <div>
-              <p class="font-semibold">Black Shirt</p>
-              <p class="text-sm text-gray-500">Size XL</p>
-              <p class="text-sm text-red-500 line-through">Rp. 500.000</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-4">
-            <p class="text-sm font-semibold item-price">Rp. 400.000</p>
-            <div class="flex items-center">
-              <button class="px-2 bg-gray-200 rounded qty-minus">-</button>
-              <span class="px-2 qty">0</span>
-              <button class="px-2 bg-gray-200 rounded qty-plus">+</button>
-            </div>
-            <span class="text-red-500 text-sm">20%</span>
-          </div>
-        </div>
+  <section class="my-40">
 
-        <!-- Item 2 -->
-        <div class="flex items-center justify-between border-b pb-4" data-price="300000" data-discount="0.1">
-          <div class="flex items-center gap-4">
-            <img src="img/mario.jpg" alt="Jeans" class="w-20 h-20 rounded">
-            <div>
-              <p class="font-semibold">Jeans</p>
-              <p class="text-sm text-gray-500">Size L</p>
+    <div class="max-w-6xl mx-auto bg-white shadow-xl rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-3 gap-4 p-6 ">
+      
+      <!-- Cart Section -->
+      <div class="md:col-span-2 ">
+        <h2 class="text-xl font-bold mb-4">Keranjang Belanja</h2>
+        <div class="space-y-4" id="cart">
+          <!-- Item 1 -->
+          <div class="flex items-center justify-between border-b pb-4" data-price="400000" data-discount="0.2">
+            <div class="flex items-center gap-4">
+              <img src="img/mario.jpg" alt="Black Shirt" class="w-20 h-20 rounded">
+              <div>
+                <p class="font-semibold">Black Shirt</p>
+                <p class="text-sm text-gray-500">Size XL</p>
+                <p class="text-sm text-red-500 line-through">Rp. 500.000</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <p class="text-sm font-semibold item-price">Rp. 400.000</p>
+              <div class="flex items-center">
+                <button class="px-2 bg-gray-200 rounded qty-minus">-</button>
+                <span class="px-2 qty">0</span>
+                <button class="px-2 bg-gray-200 rounded qty-plus">+</button>
+              </div>
+              <span class="text-red-500 text-sm">20%</span>
             </div>
           </div>
-          <div class="flex items-center gap-4">
-            <p class="text-sm font-semibold item-price">Rp. 300.000</p>
-            <div class="flex items-center">
-              <button class="px-2 bg-gray-200 rounded qty-minus">-</button>
-              <span class="px-2 qty">0</span>
-              <button class="px-2 bg-gray-200 rounded qty-plus">+</button>
+  
+          <!-- Item 2 -->
+          <div class="flex items-center justify-between border-b pb-4" data-price="300000" data-discount="0.1">
+            <div class="flex items-center gap-4">
+              <img src="img/mario.jpg" alt="Jeans" class="w-20 h-20 rounded">
+              <div>
+                <p class="font-semibold">Jeans</p>
+                <p class="text-sm text-gray-500">Size L</p>
+              </div>
             </div>
-            <span class="text-gray-500 text-sm">0%</span>
+            <div class="flex items-center gap-4">
+              <p class="text-sm font-semibold item-price">Rp. 300.000</p>
+              <div class="flex items-center">
+                <button class="px-2 bg-gray-200 rounded qty-minus">-</button>
+                <span class="px-2 qty">0</span>
+                <button class="px-2 bg-gray-200 rounded qty-plus">+</button>
+              </div>
+              <span class="text-gray-500 text-sm">0%</span>
+            </div>
           </div>
+  
+          <!-- Item 3 -->
+          <div class="flex items-center justify-between" data-price="235000" data-discount="0">
+            <div class="flex items-center gap-4">
+              <img src="img/mario.jpg" alt="White t-Shirt" class="w-20 h-20 rounded">
+              <div>
+                <p class="font-semibold">White t-Shirt</p>
+                <p class="text-sm text-gray-500">Size XL</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <p class="text-sm font-semibold item-price">Rp. 235.000</p>
+              <div class="flex items-center">
+                <button class="px-2 bg-gray-200 rounded qty-minus">-</button>
+                <span class="px-2 qty">0</span>
+                <button class="px-2 bg-gray-200 rounded qty-plus">+</button>
+              </div>
+              <span class="text-gray-500 text-sm">0%</span>
+            </div>
+          </div>
+          
         </div>
-
-        <!-- Item 3 -->
-        <div class="flex items-center justify-between" data-price="235000" data-discount="0">
-          <div class="flex items-center gap-4">
-            <img src="img/mario.jpg" alt="White t-Shirt" class="w-20 h-20 rounded">
-            <div>
-              <p class="font-semibold">White t-Shirt</p>
-              <p class="text-sm text-gray-500">Size XL</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-4">
-            <p class="text-sm font-semibold item-price">Rp. 235.000</p>
-            <div class="flex items-center">
-              <button class="px-2 bg-gray-200 rounded qty-minus">-</button>
-              <span class="px-2 qty">0</span>
-              <button class="px-2 bg-gray-200 rounded qty-plus">+</button>
-            </div>
-            <span class="text-gray-500 text-sm">0%</span>
-          </div>
+  
+        <!-- Summary -->
+        <div class="mt-6 text-right space-y-2">
+          <p>Subtotal Untuk Produk: <strong id="subtotal">Rp. 935.000</strong></p>
+          <p>Subtotal Pengiriman: <strong id="shipping">Rp. 10.000</strong></p>
+          <p class="text-xl font-bold">Total Pembayaran: <span id="total" class="text-pink-500">Rp. 945.000</span></p>
         </div>
-        
       </div>
-
-      <!-- Summary -->
-      <div class="mt-6 text-right space-y-2">
-        <p>Subtotal Untuk Produk: <strong id="subtotal">Rp. 935.000</strong></p>
-        <p>Subtotal Pengiriman: <strong id="shipping">Rp. 10.000</strong></p>
-        <p class="text-xl font-bold">Total Pembayaran: <span id="total" class="text-pink-500">Rp. 945.000</span></p>
+  
+      <!-- Payment Info Section -->
+      <div class="bg-white p-4 rounded-lg  shadow-xl border border-gray-200">
+        <h2 class="text-xl font-bold mb-4">Info Pembayaran</h2>
+        <form class="space-y-4">
+          <input type="text" placeholder="Masukkan Alamat" class="w-full border rounded p-2 text-sm">
+          <textarea placeholder="Silakan tinggalkan pesan" class="w-full border rounded p-2 text-sm"></textarea>
+          <button type="submit" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 rounded">Buat Pesanan</button>
+        </form>
       </div>
     </div>
-
-    <!-- Payment Info Section -->
-    <div class="bg-white p-4 rounded-lg shadow-inner shadow-xl border border-gray-200">
-      <h2 class="text-xl font-bold mb-4">Info Pembayaran</h2>
-      <form class="space-y-4">
-        <input type="text" placeholder="Masukkan Alamat" class="w-full border rounded p-2 text-sm">
-        <textarea placeholder="Silakan tinggalkan pesan" class="w-full border rounded p-2 text-sm"></textarea>
-        <button type="submit" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 rounded">Buat Pesanan</button>
-      </form>
-    </div>
-  </div>
+  </section>
 
   <script>
     const cart = document.getElementById('cart');

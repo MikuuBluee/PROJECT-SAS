@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AirPods Max Product Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-white text-gray-800 font-sans">
+    <!-- Navbar -->
+    <header class="flex items-center justify-between p-4 shadow-md">
+      <div class="text-xl font-bold text-green-600">Shopcart</div>
+      <nav class="space-x-4 hidden md:block">
+        <a href="#" class="text-gray-700">Categories</a>
+        <a href="#" class="text-gray-700">Deals</a>
+        <a href="#" class="text-gray-700">What's New</a>
+        <a href="#" class="text-gray-700">Delivery</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <input type="text" placeholder="Search Product" class="border px-2 py-1 rounded" />
+        <button>Account</button>
+        <button>Cart</button>
+      </div>
+    </header>
+
+    <!-- Main Product Section -->
+    <main class="max-w-6xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Product Images -->
+      <div>
+        <img
+          src="https://www.apple.com/v/airpods-max/a/images/overview/hero__gnfk5g59t0qe_large.jpg"
+          alt="AirPods Max"
+          class="rounded-xl w-full"
+        />
+        <div class="flex space-x-4 mt-4">
+          <img src="https://via.placeholder.com/60" class="w-16 h-16 border rounded" />
+          <img src="https://via.placeholder.com/60" class="w-16 h-16 border rounded" />
+          <img src="https://via.placeholder.com/60" class="w-16 h-16 border rounded" />
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div>
+        <h1 class="text-3xl font-semibold">Airpods- Max</h1>
+        <p class="text-gray-600 mt-2">
+          a perfect balance of exhilarating high-fidelity audio and the effortless magic of AirPods.
+        </p>
+
+        <div class="mt-4 flex items-center">
+          <span class="text-green-600 font-bold mr-2">★★★★★</span>
+          <span>(121)</span>
+        </div>
+
+        <div class="text-2xl font-bold mt-4">$549.00 <span class="text-base font-normal">or 99.99/month</span></div>
+
+        <div class="mt-6">
+          <p class="font-semibold">Choose a Color</p>
+          <div class="flex space-x-2 mt-2">
+            <button class="w-6 h-6 rounded-full bg-red-300 border-2 border-black"></button>
+            <button class="w-6 h-6 rounded-full bg-gray-200"></button>
+            <button class="w-6 h-6 rounded-full bg-green-300"></button>
+            <button class="w-6 h-6 rounded-full bg-slate-400"></button>
+            <button class="w-6 h-6 rounded-full bg-blue-300"></button>
+          </div>
+        </div>
+
+        <div class="mt-6 flex items-center space-x-4">
+          <div class="flex items-center border rounded px-3 py-1">
+            <button onclick="decreaseQty()">-</button>
+            <input id="quantity" type="text" value="1" class="w-8 text-center border-none outline-none" />
+            <button onclick="increaseQty()">+</button>
+          </div>
+          <p class="text-sm text-orange-500 font-medium">Only <strong>12 Items</strong> Left! Don’t miss it</p>
+        </div>
+
+        <div class="mt-6 flex space-x-4">
+          <button class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800">Buy Now</button>
+          <button class="border border-gray-500 px-6 py-2 rounded">Add to Cart</button>
+        </div>
+
+        <div class="mt-6 text-sm">
+          <p class="flex items-center gap-2"><span class="text-orange-600">Free Delivery</span> - Enter your Postal code for Delivery Availability</p>
+          <p class="mt-1 text-orange-600">Return Delivery - Free 30days Delivery Returns.</p>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      function decreaseQty() {
+        const qty = document.getElementById('quantity');
+        let value = parseInt(qty.value);
+        if (value > 1) qty.value = value - 1;
+      }
+
+      function increaseQty() {
+        const qty = document.getElementById('quantity');
+        let value = parseInt(qty.value);
+        qty.value = value + 1;
+      }
+    </script>
+  </body>
+</html>
