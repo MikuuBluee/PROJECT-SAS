@@ -1,563 +1,79 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Semua Produk - Toko Online</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .product-card:hover {
-            transform: translateY(-5px);
-            transition: transform 0.3s ease;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 50;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 800px;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Gallery</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Axios CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-<body class="bg-gray-100">
-  <!-- Nav -->
-  <nav id="navbar" class="bg-white py-4 fixed top-0 left-0 w-full bg-opacity-100 shadow transition-all duration-300 z-50">
-    <div class="container mx-auto px-4 flex justify-between items-center">
-      <div class="flex items-center">
-        <a href="index.html" class="flex items-center">
-          <img src="assets/logo-1.png" alt="" class="w-40">
-        </a>
-      </div>
+<body class="bg-gray-100 p-4">
+  <h1 class="text-2xl font-bold mb-4 text-center">Daftar Produk</h1>
 
-      <!-- Search, account, cart -->
-      <div class="hidden md:flex items-center space-x-6">
-        <form id="search" class="relative" onsubmit="return true;">
-          <div class="relative">
-            <input type="text" id="searchInput" placeholder="Search Product" class="pl-4 pr-10 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-transparent w-64">
-            <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
-              <i class="fas fa-search text-gray-400"></i>
-            </button>
-          </div>
-        </form>
-        <a href="#" class="flex items-center">
-          <i class="fas fa-shopping-cart mr-1"></i>
-          <span>Cart</span>
-        </a>
-      </div>
+  <!-- Responsive grid: 1 kolom di mobile, 2 di tablet, 3 di desktop -->
+  <div id="product-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+  <!-- Modal for product detail -->
+  <div id="product-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
+    <div class="bg-white rounded-lg p-4 w-11/12 max-w-md relative">
+      <button id="modal-close" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+      <img id="modal-image" class="w-full h-48 object-cover mb-2 rounded" alt="Product Image" />
+      <h2 id="modal-title" class="text-lg font-semibold mb-1"></h2>
+      <p id="modal-description" class="text-sm mb-2"></p>
+      <p id="modal-price" class="text-base font-bold mb-3"></p>
+      <button id="buy-button" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Beli</button>
     </div>
+  </div>
 
-    <!-- Menu -->
-    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
-      <ul class="space-y-2">
-        <form class="mt-2 relative">
-          <input type="text" placeholder="Search Product" class="pl-4 pr-10 py-2 w-full rounded-full border border-gray-300 focus:outline-none">
-          <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
-            <i class="fas fa-search text-gray-400"></i>
-          </button>
-        </form>
-        </li>
-        <li><a href="cart.html" class="flex items-center"><i class="fas fa-shopping-cart mr-1"></i><span>Cart</span></a></li>
-      </ul>
-    </div>
-  </nav>
-  <!-- main -->
-    <section class="my-20">
-      <div class="container mx-auto px-4 py-8">
-          <h1 class="text-3xl font-bold mb-8">Semua Produk</h1>
-          
-          <!-- Product Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-              <!-- Product 1 -->
-              <div class="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onclick="openModal('product1')">
-                  <div class="relative">
-                      <img src="assets/top-1.jpg" alt="Aerostreet T Shirt Pique Kenzy Grey" class="w-full h-48 object-cover">
-                      <div class="absolute top-2 right-2">
-                          <img src="assets/logo.png" alt="Logo" class="w-6 h-6">
-                      </div>
-                  </div>
-                  <div class="p-4">
-                      <div class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-sm mb-2 w-fit">
-                          Beli Lokal
-                      </div>
-                      <h3 class="text-sm font-medium mb-1">Aerostreet T Shirt Pique Kenzy</h3>
-                      <p class="text-lg font-bold">Rp69.900</p>
-                      <p class="text-xs text-gray-500 line-through">Rp179.800</p>
-                      <span class="text-xs text-red-500 font-bold">50%</span>
-                      <p class="text-xs text-gray-500 mt-1">2 terjual</p>
-                  </div>
-                  <div class="px-4 pb-3 text-right">
-                      <button class="text-gray-500">...</button>
-                  </div>
-              </div>
-  
-              <!-- Product 2 -->
-              <div class="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onclick="openModal('product2')">
-                  <div class="relative">
-                      <img src="assets/top-2.jpg" alt="Aerostreet T Shirt Pique Kenzy Sage Green" class="w-full h-48 object-cover">
-                      <div class="absolute top-2 right-2">
-                          <img src="assets/logo.png" alt="Logo" class="w-6 h-6">
-                      </div>
-                  </div>
-                  <div class="p-4">
-                      <div class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-sm mb-2 w-fit">
-                          Beli Lokal
-                      </div>
-                      <h3 class="text-sm font-medium mb-1">Aerostreet T Shirt Pique Kenzy Sage Green Kaos T Shirt</h3>
-                      <p class="text-lg font-bold">Rp89.900</p>
-                      <p class="text-xs text-gray-500 line-through">Rp179.800</p>
-                      <span class="text-xs text-red-500 font-bold">50%</span>
-                      <p class="text-xs text-gray-500 mt-1">2 terjual</p>
-                  </div>
-                  <div class="px-4 pb-3 text-right">
-                      <button class="text-gray-500">...</button>
-                  </div>
-              </div>
-  
-              <!-- Product 3 -->
-              <div class="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onclick="openModal('product3')">
-                  <div class="relative">
-                      <img src="assets/top-3.jpg" alt="Aerostreet T Shirt Pique Kenzy Terracotta" class="w-full h-48 object-cover">
-                      <div class="absolute top-2 right-2">
-                          <img src="assets/logo.png" alt="Logo" class="w-6 h-6">
-                      </div>
-                  </div>
-                  <div class="p-4">
-                      <div class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-sm mb-2 w-fit">
-                          Beli Lokal
-                      </div>
-                      <h3 class="text-sm font-medium mb-1">Aerostreet T Shirt Pique Kenzy Terracotta Kaos T Shirt</h3>
-                      <p class="text-lg font-bold">Rp89.900</p>
-                      <p class="text-xs text-gray-500 line-through">Rp179.800</p>
-                      <span class="text-xs text-red-500 font-bold">50%</span>
-                  </div>
-                  <div class="px-4 pb-3 text-right">
-                      <button class="text-gray-500">...</button>
-                  </div>
-              </div>
-  
-              <!-- Product 4 -->
-              <div class="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onclick="openModal('product4')">
-                  <div class="relative">
-                      <img src="assets/top-4.jpg" alt="Aerostreet T Shirt Pique Kenzy Olive" class="w-full h-48 object-cover">
-                      <div class="absolute top-2 right-2">
-                          <img src="assets/logo.png" alt="Logo" class="w-6 h-6">
-                      </div>
-                  </div>
-                  <div class="p-4">
-                      <div class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-sm mb-2 w-fit">
-                          Beli Lokal
-                      </div>
-                      <h3 class="text-sm font-medium mb-1">Aerostreet T Shirt Pique Kenzy Olive Kaos T Shirt</h3>
-                      <p class="text-lg font-bold">Rp89.900</p>
-                      <p class="text-xs text-gray-500 line-through">Rp179.800</p>
-                      <span class="text-xs text-red-500 font-bold">50%</span>
-                  </div>
-                  <div class="px-4 pb-3 text-right">
-                      <button class="text-gray-500">...</button>
-                  </div>
-              </div>
-  
-              <!-- Product 5 -->
-              <div class="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onclick="openModal('product5')">
-                  <div class="relative">
-                      <img src="assets/top-5.jpg" alt="Aerostreet T Shirt Pique Kenzy White" class="w-full h-48 object-cover">
-                      <div class="absolute top-2 right-2">
-                          <img src="assets/logo.png" alt="Logo" class="w-6 h-6">
-                      </div>
-                  </div>
-                  <div class="p-4">
-                      <div class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-sm mb-2 w-fit">
-                          Beli Lokal
-                      </div>
-                      <h3 class="text-sm font-medium mb-1">Aerostreet T Shirt Pique Kenzy White Kaos T Shirt</h3>
-                      <p class="text-lg font-bold">Rp89.900</p>
-                      <p class="text-xs text-gray-500 line-through">Rp179.800</p>
-                      <span class="text-xs text-red-500 font-bold">50%</span>
-                  </div>
-                  <div class="px-4 pb-3 text-right">
-                      <button class="text-gray-500">...</button>
-                  </div>
-              </div>
-  
-              <!-- Product 6 -->
-              <div class="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onclick="openModal('product6')">
-                  <div class="relative">
-                      <img src="assets/top-6.png" alt="Aerostreet T Shirt Pique Kenzy Cafe Latte" class="w-full h-48 object-cover">
-                      <div class="absolute top-2 right-2">
-                          <img src="assets/logo.png" alt="Logo" class="w-6 h-6">
-                      </div>
-                  </div>
-                  <div class="p-4">
-                      <div class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-sm mb-2 w-fit">
-                          Beli Lokal
-                      </div>
-                      <h3 class="text-sm font-medium mb-1">Aerostreet T Shirt Pique Kenzy Cafe Latte Kaos T Shirt</h3>
-                      <p class="text-lg font-bold">Rp89.900</p>
-                      <p class="text-xs text-gray-500 line-through">Rp179.800</p>
-                      <span class="text-xs text-red-500 font-bold">50%</span>
-                  </div>
-                  <div class="px-4 pb-3 text-right">
-                      <button class="text-gray-500">...</button>
-                  </div>
-              </div>
-  
-              <!-- Product 7 -->
-              <div class="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onclick="openModal('product7')">
-                  <div class="relative">
-                      <img src="assets/top-7.jpg" alt="Aerostreet T Shirt Pique Kenzy Maroon" class="w-full h-48 object-cover">
-                      <div class="absolute top-2 right-2">
-                          <img src="assets/logo.png" alt="Logo" class="w-6 h-6">
-                      </div>
-                  </div>
-                  <div class="p-4">
-                      <div class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-sm mb-2 w-fit">
-                          Beli Lokal
-                      </div>
-                      <h3 class="text-sm font-medium mb-1">Aerostreet T Shirt Pique Kenzy Maroon Kaos T Shirt</h3>
-                      <p class="text-lg font-bold">Rp89.900</p>
-                      <p class="text-xs text-gray-500 line-through">Rp179.800</p>
-                      <span class="text-xs text-red-500 font-bold">50%</span>
-                  </div>
-                  <div class="px-4 pb-3 text-right">
-                      <button class="text-gray-500">...</button>
-                  </div>
-              </div>
-  
-              <!-- Product 8 -->
-              <div class="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onclick="openModal('product8')">
-                  <div class="relative">
-                      <img src="assets/top-8.jpg" alt="Aerostreet T Shirt Pique Kenzy Black" class="w-full h-48 object-cover">
-                      <div class="absolute top-2 right-2">
-                          <img src="assets/logo.png" alt="Logo" class="w-6 h-6">
-                      </div>
-                  </div>
-                  <div class="p-4">
-                      <div class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-sm mb-2 w-fit">
-                          Beli Lokal
-                      </div>
-                      <h3 class="text-sm font-medium mb-1">Aerostreet T Shirt Pique Kenzy Black Kaos T Shirt</h3>
-                      <p class="text-lg font-bold">Rp89.900</p>
-                      <p class="text-xs text-gray-500 line-through">Rp179.800</p>
-                      <span class="text-xs text-red-500 font-bold">50%</span>
-                  </div>
-                  <div class="px-4 pb-3 text-right">
-                      <button class="text-gray-500">...</button>
-                  </div>
-              </div>
-  
-              <!-- Product 9 -->
-              <div class="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onclick="openModal('product9')">
-                  <div class="relative">
-                      <img src="assets/top-9.jpg" alt="Aerostreet T Shirt Pique Kenzy Navy" class="w-full h-48 object-cover">
-                      <div class="absolute top-2 right-2">
-                          <img src="assets/logo.png" alt="Logo" class="w-6 h-6">
-                      </div>
-                  </div>
-                  <div class="p-4">
-                      <div class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-sm mb-2 w-fit">
-                          Beli Lokal
-                      </div>
-                      <h3 class="text-sm font-medium mb-1">Aerostreet T Shirt Pique Kenzy Navy Kaos T Shirt</h3>
-                      <p class="text-lg font-bold">Rp89.900</p>
-                      <p class="text-xs text-gray-500 line-through">Rp179.800</p>
-                      <span class="text-xs text-red-500 font-bold">50%</span>
-                  </div>
-                  <div class="px-4 pb-3 text-right">
-                      <button class="text-gray-500">...</button>
-                  </div>
-              </div>
-  
-              <!-- Product 10 -->
-              <div class="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onclick="openModal('product10')">
-                  <div class="relative">
-                      <img src="assets/top-10.jpg" alt="Aerostreet T Shirt Pique Kenzy Mustard" class="w-full h-48 object-cover">
-                      <div class="absolute top-2 right-2">
-                          <img src="assets/logo.png" alt="Logo" class="w-6 h-6">
-                      </div>
-                  </div>
-                  <div class="p-4">
-                      <div class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-sm mb-2 w-fit">
-                          Beli Lokal
-                      </div>
-                      <h3 class="text-sm font-medium mb-1">Aerostreet T Shirt Pique Kenzy Mustard Kaos T Shirt</h3>
-                      <p class="text-lg font-bold">Rp89.900</p>
-                      <p class="text-xs text-gray-500 line-through">Rp179.800</p>
-                      <span class="text-xs text-red-500 font-bold">50%</span>
-                  </div>
-                  <div class="px-4 pb-3 text-right">
-                      <button class="text-gray-500">...</button>
-                  </div>
-              </div>
-  
-              <!-- Product 11 -->
-              <div class="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onclick="openModal('product11')">
-                  <div class="relative">
-                      <img src="assets/top-11.jpg" alt="Aerostreet T Shirt Pique Kenzy Cream" class="w-full h-48 object-cover">
-                      <div class="absolute top-2 right-2">
-                          <img src="assets/logo.png" alt="Logo" class="w-6 h-6">
-                      </div>
-                  </div>
-                  <div class="p-4">
-                      <div class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-sm mb-2 w-fit">
-                          Beli Lokal
-                      </div>
-                      <h3 class="text-sm font-medium mb-1">Aerostreet T Shirt Pique Kenzy Cream Kaos T Shirt</h3>
-                      <p class="text-lg font-bold">Rp89.900</p>
-                      <p class="text-xs text-gray-500 line-through">Rp179.800</p>
-                      <span class="text-xs text-red-500 font-bold">50%</span>
-                  </div>
-                  <div class="px-4 pb-3 text-right">
-                      <button class="text-gray-500">...</button>
-                  </div>
-              </div>
-  
-              <!-- Product 12 -->
-              <div class="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onclick="openModal('product12')">
-                  <div class="relative">
-                      <img src="assets/top-12.jpg" alt="Aerostreet 37-44 Classic 2.0 Natural Navy" class="w-full h-48 object-cover">
-                      <div class="absolute top-2 right-2">
-                          <img src="assets/logo.png" alt="Logo" class="w-6 h-6">
-                      </div>
-                  </div>
-                  <div class="p-4">
-                      <div class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-sm mb-2 w-fit">
-                          Beli Lokal
-                      </div>
-                      <h3 class="text-sm font-medium mb-1">Aerostreet 37-44 Classic 2.0 Natural Natural Navy</h3>
-                      <p class="text-lg font-bold">Rp189.900</p>
-                      <p class="text-xs text-gray-500 line-through">Rp379.800</p>
-                      <span class="text-xs text-red-500 font-bold">50%</span>
-                      <p class="text-xs text-gray-500 mt-1">2 terjual</p>
-                  </div>
-                  <div class="px-4 pb-3 text-right">
-                      <button class="text-gray-500">...</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-  
-      <!-- Product Detail Modal -->
-      <div id="productModal" class="modal">
-          <div class="modal-content">
-              <span class="close" onclick="closeModal()">&times;</span>
-              <div class="flex flex-col md:flex-row gap-8">
-                  <div class="md:w-1/2">
-                      <img id="modalImage" src="/placeholder.svg" alt="Product Image" class="w-full h-auto rounded-lg">
-                  </div>
-                  <div class="md:w-1/2">
-                      <div class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-sm mb-2 w-fit">
-                          Beli Lokal
-                      </div>
-                      <h2 id="modalTitle" class="text-2xl font-bold mb-4"></h2>
-                      <div class="flex items-center gap-2 mb-4">
-                          <p id="modalPrice" class="text-2xl font-bold"></p>
-                          <p id="modalOriginalPrice" class="text-sm text-gray-500 line-through"></p>
-                          <span id="modalDiscount" class="text-sm text-red-500 font-bold"></span>
-                      </div>
-                      <p id="modalSold" class="text-sm text-gray-500 mb-6"></p>
-                      
-                      <div class="mb-6">
-                          <h3 class="text-lg font-semibold mb-2">Ukuran</h3>
-                          <div class="flex flex-wrap gap-2">
-                              <button class="border border-gray-300 px-4 py-2 rounded-md hover:border-green-500 hover:text-green-500">S</button>
-                              <button class="border border-gray-300 px-4 py-2 rounded-md hover:border-green-500 hover:text-green-500">M</button>
-                              <button class="border border-gray-300 px-4 py-2 rounded-md hover:border-green-500 hover:text-green-500">L</button>
-                              <button class="border border-gray-300 px-4 py-2 rounded-md hover:border-green-500 hover:text-green-500">XL</button>
-                              <button class="border border-gray-300 px-4 py-2 rounded-md hover:border-green-500 hover:text-green-500">XXL</button>
-                          </div>
-                      </div>
-                      
-                      <div class="mb-6">
-                          <h3 class="text-lg font-semibold mb-2">Deskripsi</h3>
-                          <p id="modalDescription" class="text-gray-700"></p>
-                      </div>
-                      
-                      <div class="mb-6">
-                          <h3 class="text-lg font-semibold mb-2">Spesifikasi</h3>
-                          <ul class="list-disc list-inside text-gray-700">
-                              <li>Bahan: 100% Cotton</li>
-                              <li>Model: Regular Fit</li>
-                              <li>Perawatan: Cuci dengan air dingin, jangan gunakan pemutih</li>
-                              <li>Diproduksi di Indonesia</li>
-                          </ul>
-                      </div>
-                      
-                      <div class="flex gap-4">
-                          <button class="bg-green-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-green-600 transition">Beli Sekarang</button>
-                          <button class="border border-green-500 text-green-500 px-6 py-3 rounded-md font-semibold hover:bg-green-50 transition">Tambah ke Keranjang</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-    </section>
+  <script>
+    const fallbackProducts = [
+      { name: 'Prod Dummy 1', price: 100000, imageUrl: 'https://via.placeholder.com/300x200', description: 'Desc dummy 1.', paymentUrl: '#' },
+      { name: 'Prod Dummy 2', price: 200000, imageUrl: 'https://via.placeholder.com/300x200', description: 'Desc dummy 2.', paymentUrl: '#' }
+    ];
+    const apiEndpoint = '/api/products';
 
-<script >
-     const products = {
-            product1: {
-                title: "Aerostreet T Shirt Pique Kenzy black Kaos T Shirt",
-                price: "Rp69.900",
-                originalPrice: "Rp179.800",
-                discount: "50%",
-                sold: "1000 terjual",
-                image: "assets/top-1.jpg",
-                description: "T-shirt pique dengan desain minimalis dan nyaman dipakai. Terbuat dari bahan cotton berkualitas tinggi yang menyerap keringat dan tidak panas saat dipakai."
-            },
-            product2: {
-                title: "Aerostreet T Shirt Pique Kenzy Sage Green Kaos T Shirt",
-                price: "Rp89.900",
-                originalPrice: "Rp179.800",
-                discount: "50%",
-                sold: "2 terjual",
-                image: "assets/top-2.jpg",
-                description: "T-shirt pique dengan desain minimalis dan nyaman dipakai. Terbuat dari bahan cotton berkualitas tinggi yang menyerap keringat dan tidak panas saat dipakai."
-            },
-            product3: {
-                title: "Aerostreet T Shirt Pique Kenzy Terracotta Kaos T Shirt",
-                price: "Rp89.900",
-                originalPrice: "Rp179.800",
-                discount: "50%",
-                sold: "",
-                image: "assets/top-3.jpg",
-                description: "T-shirt pique dengan desain minimalis dan nyaman dipakai. Terbuat dari bahan cotton berkualitas tinggi yang menyerap keringat dan tidak panas saat dipakai."
-            },
-            product4: {
-                title: "Aerostreet T Shirt Pique Kenzy Olive Kaos T Shirt",
-                price: "Rp89.900",
-                originalPrice: "Rp179.800",
-                discount: "50%",
-                sold: "",
-                image: "assets/top-4.jpg",
-                description: "T-shirt pique dengan desain minimalis dan nyaman dipakai. Terbuat dari bahan cotton berkualitas tinggi yang menyerap keringat dan tidak panas saat dipakai."
-            },
-            product5: {
-                title: "Aerostreet T Shirt Pique Kenzy White Kaos T Shirt",
-                price: "Rp89.900",
-                originalPrice: "Rp179.800",
-                discount: "50%",
-                sold: "",
-                image: "assets/top-5.jpg",
-                description: "T-shirt pique dengan desain minimalis dan nyaman dipakai. Terbuat dari bahan cotton berkualitas tinggi yang menyerap keringat dan tidak panas saat dipakai."
-            },
-            product6: {
-                title: "Aerostreet T Shirt Pique Kenzy Cafe Latte Kaos T Shirt",
-                price: "Rp89.900",
-                originalPrice: "Rp179.800",
-                discount: "50%",
-                sold: "",
-                image: "assets/top-6.jpg",
-                description: "T-shirt pique dengan desain minimalis dan nyaman dipakai. Terbuat dari bahan cotton berkualitas tinggi yang menyerap keringat dan tidak panas saat dipakai."
-            },
-            product7: {
-                title: "Aerostreet T Shirt Pique Kenzy Maroon Kaos T Shirt",
-                price: "Rp89.900",
-                originalPrice: "Rp179.800",
-                discount: "50%",
-                sold: "",
-                image: "assets/top-7.jpg",
-                description: "T-shirt pique dengan desain minimalis dan nyaman dipakai. Terbuat dari bahan cotton berkualitas tinggi yang menyerap keringat dan tidak panas saat dipakai."
-            },
-            product8: {
-                title: "Aerostreet T Shirt Pique Kenzy Black Kaos T Shirt",
-                price: "Rp89.900",
-                originalPrice: "Rp179.800",
-                discount: "50%",
-                sold: "",
-                image: "assets/top-8.jpg",
-                description: "T-shirt pique dengan desain minimalis dan nyaman dipakai. Terbuat dari bahan cotton berkualitas tinggi yang menyerap keringat dan tidak panas saat dipakai."
-            },
-            product9: {
-                title: "Aerostreet T Shirt Pique Kenzy Navy Kaos T Shirt",
-                price: "Rp89.900",
-                originalPrice: "Rp179.800",
-                discount: "50%",
-                sold: "",
-                image: "assets/top-9.jpg",
-                description: "T-shirt pique dengan desain minimalis dan nyaman dipakai. Terbuat dari bahan cotton berkualitas tinggi yang menyerap keringat dan tidak panas saat dipakai."
-            },
-            product10: {
-                title: "Aerostreet T Shirt Pique Kenzy Mustard Kaos T Shirt",
-                price: "Rp89.900",
-                originalPrice: "Rp179.800",
-                discount: "50%",
-                sold: "",
-                image: "assets/top-10.jpg",
-                description: "T-shirt pique dengan desain minimalis dan nyaman dipakai. Terbuat dari bahan cotton berkualitas tinggi yang menyerap keringat dan tidak panas saat dipakai."
-            },
-            product11: {
-                title: "Aerostreet T Shirt Pique Kenzy Cream Kaos T Shirt",
-                price: "Rp89.900",
-                originalPrice: "Rp179.800",
-                discount: "50%",
-                sold: "",
-                image: "assets/top-11.jpg",
-                description: "T-shirt pique dengan desain minimalis dan nyaman dipakai. Terbuat dari bahan cotton berkualitas tinggi yang menyerap keringat dan tidak panas saat dipakai."
-            },
-            product12: {
-                title: "Aerostreet 37-44 Classic 2.0 Natural Natural Navy",
-                price: "Rp189.900",
-                originalPrice: "Rp379.800",
-                discount: "50%",
-                sold: "2 terjual",
-                image: "assets/top-12.jpg",
-                description: "Sepatu casual dengan desain klasik yang nyaman dipakai. Terbuat dari bahan berkualitas tinggi dengan sol yang empuk dan tahan lama."
-            }
-        };
+    async function fetchProducts() {
+      try {
+        const { data } = await axios.get(apiEndpoint);
+        renderCards(data);
+      } catch {
+        renderCards(fallbackProducts);
+      }
+    }
 
-        // Modal functions
-        const modal = document.getElementById("productModal");
-        
-        function openModal(productId) {
-            const product = products[productId];
-            
-            document.getElementById("modalTitle").textContent = product.title;
-            document.getElementById("modalPrice").textContent = product.price;
-            document.getElementById("modalOriginalPrice").textContent = product.originalPrice;
-            document.getElementById("modalDiscount").textContent = product.discount;
-            document.getElementById("modalSold").textContent = product.sold;
-            document.getElementById("modalImage").src = product.image;
-            document.getElementById("modalImage").alt = product.title;
-            document.getElementById("modalDescription").textContent = product.description;
-            
-            modal.style.display = "block";
-        }
-        
-        function closeModal() {
-            modal.style.display = "none";
-        }
-        
-        // Close modal when clicking outside of it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-</script> 
+    function renderCards(arr) {
+      const container = document.getElementById('product-container');
+      container.innerHTML = '';
+      arr.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded shadow p-3 cursor-pointer hover:shadow-md';
+        card.innerHTML = `
+          <img src="${p.imageUrl}" alt="${p.name}" class="w-full h-32 object-cover rounded mb-2" />
+          <h3 class="text-sm font-medium">${p.name}</h3>
+          <p class="text-xs text-gray-600">Rp${p.price.toLocaleString()}</p>
+        `;
+        card.onclick = () => showDetail(p);
+        container.appendChild(card);
+      });
+    }
 
-    
+    function showDetail(p) {
+      document.getElementById('modal-image').src = p.imageUrl;
+      document.getElementById('modal-title').textContent = p.name;
+      document.getElementById('modal-description').textContent = p.description;
+      document.getElementById('modal-price').textContent = `Rp${p.price.toLocaleString()}`;
+      document.getElementById('buy-button').onclick = () => location.href = p.paymentUrl;
+      document.getElementById('product-modal').classList.replace('hidden','flex');
+    }
+
+    document.getElementById('modal-close').onclick = () => {
+      document.getElementById('product-modal').classList.replace('flex','hidden');
+    };
+
+    fetchProducts();
+  </script>
 </body>
 </html>
