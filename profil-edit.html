@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profil</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>  
+    <script>
+        tailwind.config = {
+            theme: {
+            extend: {
+                colors: {
+                    c1: '#F1EFEC',
+                    c2: '#D4C9BE',
+                    c3: '#123458',   // Contoh warna kustom
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- bg -->
+    <div class="min-h-screen flex item items-center justify-center bg-c1 font-sans bg-[url('assets/bg.jpeg')] relative">
+        
+        <a class="bg-white text-white shadow-2xl rounded-lg transition duration-200 focus:outline-2 focus:outline-offset-2 focus:outline-gray-400 active:bg-gray-200 absolute top-10 left-10">
+            <img src="assets/Logo_Aerostreet.png" alt="" width="80">
+        </a>
+        
+        <div class="div">
+        </div>
+        <!-- display -->
+        <main class="flex flex-col item items-center justify-center rounded-2xl">
+            <!-- kanan -->
+            <all class="flex bg-white pl-20 pr-20 pb-15 pt-15 rounded-2xl border border-gray-300 shadow-2xl shadow-gray-500">
+                <kanan class="flex-shrink-0 flex flex-col item items-center justify-center w-110 pr-5 text-center gap-3 border-r border-gray-300">
+                    <img src="assets/pp-anime-1.jpg" alt="Foto profil" class="w-80 h-80 rounded-lg mx-auto mb-5 shadow-2xl shadow-gray-400" />
+                    <div class="flex gap-10">
+                    <button class="p-6 bg-c3 text-white py-2 shadow-xl/15 rounded-lg transition duration-200 ease-in-out hover:bg-blue-900 focus:outline-2 focus:outline-offset-2 focus:outline-gray-400 active:bg-blue-950">Ganti foto</button>
+                    <button class="p-6 bg-c2 text-red-500 py-2 shadow-xl/15 rounded-lg transition duration-200 ease-in-out hover:bg-red-300 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-gray-400 active:bg-red-300 ">Hapus foto</button>
+                    </div>
+                </kanan>
+                <isi class="flex flex-col gap-2 w-full pl-10">
+                    
+                                <div class="flex flex-col">
+                                    <label class="text-lg font-sm font-semibold">Username</label>
+                                    <input type="text" placeholder="Masukan Username" class="w-105 transition duration-100 ease-in-out border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 shadow-lg rounded-lg p-1 font-sm"></input>
+                                </div>
+                                <div class="flex flex-col">
+                                    <label class="text-lg font-sm ">Nama</label>
+                                    <input type="text" placeholder="Masukan Nama" class="w-105  border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 shadow-lg rounded-lg p-1 "></input>
+                                </div>
+                                <div class="flex flex-col">
+                                    <label class="text-lg font-sm font-semibold">Nomer Telepon</label>
+                                    <input type="text" placeholder="Masukan nomer telepon" class="w-105 border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 shadow-lg rounded-lg p-1 "></input>
+                                </div>
+                                <div class="flex flex-col">
+                                    <label class="text-lg font-sm font-semibold">Email</label>
+                                    <input type="email" placeholder="Masukan Email" class="w-105 border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 shadow-lg rounded-lg p-1 "></input>
+                                </div>
+                                <div class="flex flex-col">
+                                    <label class="text-lg font-sm font-semibold">Password</label>
+                                    <input type="password" placeholder="Masukan Password" class="w-105 mb-2 border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 shadow-lg rounded-lg p-1 "></input>
+                                </div>
+                                <div class="flex flex-col">
+                                    <label class="text-lg font-sm font-semibold">Alamat</label>
+                                    <input type="text" placeholder="Masukan Alamat" class="w-105 mb-2 border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 shadow-lg rounded-lg p-1 "></input>
+                                </div>
+                                <div>
+                                    <a class="p-6 bg-c3 text-white py-2 shadow-xl/15 rounded-lg transition duration-200 ease-in-out hover:bg-blue-900 focus:outline-2 focus:outline-offset-2 focus:outline-gray-400 active:bg-blue-950" href="profil.html">Simpan</a>
+                                </div>
+                </isi>
+
+            </all>
+
+
+
+        </main>
+
+
+    </div>
+</body>
+</html>
