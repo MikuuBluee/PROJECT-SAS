@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Keranjang Belanja</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-pink-100 p-6 font-sans">
+  <div class="max-w-6xl mx-auto bg-white shadow-xl rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-3 gap-4 p-6">
+    
+    <!-- Cart Section -->
+    <div class="md:col-span-2">
+      <h2 class="text-xl font-bold mb-4">Keranjang Belanja</h2>
+      <div class="space-y-4" id="cart">
+        <!-- Item 1 -->
+        <div class="flex items-center justify-between border-b pb-4" data-price="400000" data-discount="0.2">
+          <div class="flex items-center gap-4">
+            <img src="img/mario.jpg" alt="Black Shirt" class="w-20 h-20 rounded">
+            <div>
+              <p class="font-semibold">Black Shirt</p>
+              <p class="text-sm text-gray-500">Size XL</p>
+              <p class="text-sm text-red-500 line-through">Rp. 500.000</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <p class="text-sm font-semibold item-price">Rp. 400.000</p>
+            <div class="flex items-center">
+              <button class="px-2 bg-gray-200 rounded qty-minus">-</button>
+              <span class="px-2 qty">0</span>
+              <button class="px-2 bg-gray-200 rounded qty-plus">+</button>
+            </div>
+            <span class="text-red-500 text-sm">20%</span>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="flex items-center justify-between border-b pb-4" data-price="300000" data-discount="0.1">
+          <div class="flex items-center gap-4">
+            <img src="img/mario.jpg" alt="Jeans" class="w-20 h-20 rounded">
+            <div>
+              <p class="font-semibold">Jeans</p>
+              <p class="text-sm text-gray-500">Size L</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <p class="text-sm font-semibold item-price">Rp. 300.000</p>
+            <div class="flex items-center">
+              <button class="px-2 bg-gray-200 rounded qty-minus">-</button>
+              <span class="px-2 qty">0</span>
+              <button class="px-2 bg-gray-200 rounded qty-plus">+</button>
+            </div>
+            <span class="text-gray-500 text-sm">0%</span>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="flex items-center justify-between" data-price="235000" data-discount="0">
+          <div class="flex items-center gap-4">
+            <img src="img/mario.jpg" alt="White t-Shirt" class="w-20 h-20 rounded">
+            <div>
+              <p class="font-semibold">White t-Shirt</p>
+              <p class="text-sm text-gray-500">Size XL</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <p class="text-sm font-semibold item-price">Rp. 235.000</p>
+            <div class="flex items-center">
+              <button class="px-2 bg-gray-200 rounded qty-minus">-</button>
+              <span class="px-2 qty">0</span>
+              <button class="px-2 bg-gray-200 rounded qty-plus">+</button>
+            </div>
+            <span class="text-gray-500 text-sm">0%</span>
+          </div>
+        </div>
+        
+      </div>
+
+      <!-- Summary -->
+      <div class="mt-6 text-right space-y-2">
+        <p>Subtotal Untuk Produk: <strong id="subtotal">Rp. 935.000</strong></p>
+        <p>Subtotal Pengiriman: <strong id="shipping">Rp. 10.000</strong></p>
+        <p class="text-xl font-bold">Total Pembayaran: <span id="total" class="text-pink-500">Rp. 945.000</span></p>
+      </div>
+    </div>
+
+    <!-- Payment Info Section -->
+    <div class="bg-white p-4 rounded-lg shadow-inner shadow-xl border border-gray-200">
+      <h2 class="text-xl font-bold mb-4">Info Pembayaran</h2>
+      <form class="space-y-4">
+        <input type="text" placeholder="Masukkan Alamat" class="w-full border rounded p-2 text-sm">
+        <textarea placeholder="Silakan tinggalkan pesan" class="w-full border rounded p-2 text-sm"></textarea>
+        <button type="submit" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 rounded">Buat Pesanan</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const cart = document.getElementById('cart');
+    const subtotalEl = document.getElementById('subtotal');
+    const totalEl = document.getElementById('total');
+    const shippingCost = 10000;
+
+    function formatRupiah(angka) {
+      return "Rp. " + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    function calculateTotals() {
+      let subtotal = 0;
+      cart.querySelectorAll('div[data-price]').forEach(item => {
+        const price = parseInt(item.getAttribute('data-price'));
+        const discount = parseFloat(item.getAttribute('data-discount'));
+        const qty = parseInt(item.querySelector('.qty').innerText);
+        const discountedPrice = price * (0 - discount);
+        subtotal += discountedPrice * qty;
+      });
+      subtotalEl.innerText = formatRupiah(subtotal);
+      totalEl.innerText = formatRupiah(subtotal + shippingCost);
+    }
+
+    cart.addEventListener('click', function(e) {
+      if (e.target.classList.contains('qty-plus') || e.target.classList.contains('qty-minus')) {
+        const qtySpan = e.target.parentElement.querySelector('.qty');
+        let qty = parseInt(qtySpan.innerText);
+        if (e.target.classList.contains('qty-plus')) qty++;
+        if (e.target.classList.contains('qty-minus') && qty > 0) qty--;
+        qtySpan.innerText = qty;
+        calculateTotals();
+      }
+    });
+
+    // Inisialisasi total awal
+    calculateTotals();
+  </script>
+</body>
+</html>
