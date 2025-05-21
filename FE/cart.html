@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Keranjang Belanja</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-100 p-6 font-[poppins]">
+
+   <nav id="navbar" class="bg-white py-4 fixed top-0 left-0 w-full bg-opacity-100 shadow transition-all duration-300 z-50">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <div class="flex items-center">
+        <a href="index.html" class="flex items-center">
+          <img src="assets/logo-1.png" alt="" class="w-40">
+        </a>
+      </div>
+
+      <!-- Search, account, cart -->
+      <div class="hidden md:flex items-center space-x-6">
+        <form id="search" class="relative" onsubmit="return true;">
+          <div class="relative">
+            <input type="text" id="searchInput" placeholder="Search Product" class="pl-4 pr-10 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-transparent w-64">
+            <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
+              <i class="fas fa-search text-gray-400"></i>
+            </button>
+          </div>
+        </form>
+        <a href="#" class="flex items-center">
+          <i class="fas fa-shopping-cart mr-1"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Menu -->
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+      <ul class="space-y-2">
+        <form class="mt-2 relative">
+          <input type="text" placeholder="Search Product" class="pl-4 pr-10 py-2 w-full rounded-full border border-gray-300 focus:outline-none">
+          <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
+            <i class="fas fa-search text-gray-400"></i>
+          </button>
+        </form>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="my-40">
+
+    <div class="max-w-6xl mx-auto bg-white shadow-xl rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-3 gap-4 p-6 ">
+      
+      <!-- Cart Section -->
+      <div class="md:col-span-2 ">
+        <h2 class="text-xl font-bold mb-4">Keranjang Belanja</h2>
+        <div class="space-y-4" id="cart">
+          <!-- Item 1 -->
+          <div class="flex items-center justify-between border-b pb-4" data-price="400000" data-discount="0.2">
+            <div class="flex items-center gap-4">
+              <img src="assets/baju-no-bg.png" alt="Black Shirt" class="w-20 h-20 rounded">
+              <div>
+                <p class="font-semibold">Black Shirt</p>
+                <p class="text-sm text-gray-500">Size XL</p>
+                <p class="text-sm text-red-500 line-through">Rp. 500.000</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <p class="text-sm font-semibold item-price">Rp. 400.000</p>
+              <div class="flex items-center">
+                <button class="px-2 bg-gray-200 rounded qty-minus">-</button>
+                <span class="px-2 qty">0</span>
+                <button class="px-2 bg-gray-200 rounded qty-plus">+</button>
+              </div>
+              <span class="text-red-500 text-sm">20%</span>
+            </div>
+          </div>
+  
+          <!-- Item 2 -->
+          <div class="flex items-center justify-between border-b pb-4" data-price="300000" data-discount="0.1">
+            <div class="flex items-center gap-4">
+              <img src="assets/celana-2.webp" alt="Jeans" class="w-20 h-20 rounded">
+              <div>
+                <p class="font-semibold">Jeans</p>
+                <p class="text-sm text-gray-500">Size L</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <p class="text-sm font-semibold item-price">Rp. 300.000</p>
+              <div class="flex items-center">
+                <button class="px-2 bg-gray-200 rounded qty-minus">-</button>
+                <span class="px-2 qty">0</span>
+                <button class="px-2 bg-gray-200 rounded qty-plus">+</button>
+              </div>
+              <span class="text-gray-500 text-sm">0%</span>
+            </div>
+          </div>
+  
+          <!-- Item 3 -->
+          <div class="flex items-center justify-between" data-price="235000" data-discount="0">
+            <div class="flex items-center gap-4">
+              <img src="assets/celna.webp" alt="White t-Shirt" class="w-20 h-20 rounded">
+              <div>
+                <p class="font-semibold">White t-Shirt</p>
+                <p class="text-sm text-gray-500">Size XL</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <p class="text-sm font-semibold item-price">Rp. 235.000</p>
+              <div class="flex items-center">
+                <button class="px-2 bg-gray-200 rounded qty-minus">-</button>
+                <span class="px-2 qty">0</span>
+                <button class="px-2 bg-gray-200 rounded qty-plus">+</button>
+              </div>
+              <span class="text-gray-500 text-sm">0%</span>
+            </div>
+          </div>
+          
+        </div>
+  
+        <!-- Summary -->
+        <div class="mt-6 text-right space-y-2">
+          <p>Subtotal Untuk Produk: <strong id="subtotal">Rp. 935.000</strong></p>
+          <p>Subtotal Pengiriman: <strong id="shipping">Rp. 10.000</strong></p>
+          <p class="text-xl font-bold">Total Pembayaran: <span id="total" class="text-blue-600">Rp. 945.000</span></p>
+        </div>
+      </div>
+  
+      <!-- Payment Info Section -->
+      <div class="bg-white p-4 rounded-lg  shadow-xl border border-gray-200">
+        <h2 class="text-xl font-bold mb-4">Info Pembayaran</h2>
+        <form class="space-y-4">
+          <input type="text" placeholder="Masukkan Alamat" class="w-full border rounded-full p-2 text-sm items-center">
+          <textarea placeholder="Silakan tinggalkan pesan" class="w-full border rounded-full p-2 text-sm items-center"></textarea>
+          <button onclick="buyNow()" class="w-full bg-blue-950 hover:bg-blue-600 text-white font-semibold py-2 rounded">Buat Pesanan</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const cart = document.getElementById('cart');
+    const subtotalEl = document.getElementById('subtotal');
+    const totalEl = document.getElementById('total');
+    const shippingCost = 10000;
+
+    function formatRupiah(angka) {
+      return "Rp. " + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    function calculateTotals() {
+      let subtotal = 0;
+      cart.querySelectorAll('div[data-price]').forEach(item => {
+        const price = parseInt(item.getAttribute('data-price'));
+        const discount = parseFloat(item.getAttribute('data-discount'));
+        const qty = parseInt(item.querySelector('.qty').innerText);
+        const discountedPrice = price * (1 - discount);
+        subtotal += discountedPrice * qty;
+      });
+      subtotalEl.innerText = formatRupiah(subtotal);
+      totalEl.innerText = formatRupiah(subtotal + shippingCost);
+    }
+
+    cart.addEventListener('click', function(e) {
+      if (e.target.classList.contains('qty-plus') || e.target.classList.contains('qty-minus')) {
+        const qtySpan = e.target.parentElement.querySelector('.qty');
+        let qty = parseInt(qtySpan.innerText);
+        if (e.target.classList.contains('qty-plus')) qty++;
+        if (e.target.classList.contains('qty-minus') && qty > 0) qty--;
+        qtySpan.innerText = qty;
+        calculateTotals();
+      }
+    });
+
+    // Inisialisasi total awal
+    calculateTotals();
+  </script>
+</body>
+</html>

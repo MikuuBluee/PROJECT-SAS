@@ -19,13 +19,17 @@ exports.register = (req, res) => {
 
         authModel.createUser({ nama, email, password: hashedPassword, telepon, alamat }, (err, newUserId) => {
             if(err) return res.status(500).json({ error: err.message });
-            res.status(201).json({ message: 'Registrasi berhasil', user_id: newUserId });
+            
+            const token = jwt.sign({ user_id: newUserId, email }, JWT_SECRET, { expiresIn: '1d' });
+
+            res.status(201).json({ message: 'Registrasi berhasil', token, user: { id: newUserId, email, nama}})
         });
     });
 };
 
 exports.login = (req, res) => {
     const { email, password } = req.body;
+    console.log('Login attempt:', email, password);
 
     authModel.getUserByEmail(email, (err, user) => {
         if(err) return res.status(500).json({ error: err.message });
@@ -39,3 +43,20 @@ exports.login = (req, res) => {
         res.json({ message: 'Login berhasil', token });
     })
 }
+
+exports.checkSession = (req, res) => {
+    const authHeader = req.headers.authorization;
+    if(!authHeader){
+        return res.json({ loggedIn: false });
+    }
+
+    const token = authHeader.split(' ')[1];
+
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+        if(err){
+            return res.json({ loggedIn: false });
+        }
+
+        res.json({ loggedIn: true, user });
+    });
+};

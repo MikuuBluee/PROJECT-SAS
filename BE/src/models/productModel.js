@@ -1,12 +1,35 @@
 const db = require('../config/db');
 
 const product = {
-    getAllProduct: (callback) => {
-        db.query('SELECT * FROM products', callback);
+    getAllProduct: (category_id, callback) => {
+        let query = `SELECT * FROM products`;
+        let params = [];
+
+        if(category_id){
+            query += ` WHERE category_id=?`;
+            params.push(category_id);
+        }
+
+        db.query(query, params, callback);
     },
 
     getProductById: (id, callback) => {
-        db.query('SELECT * FROM products WHERE id=?', [id], callback);
+        db.query('SELECT * FROM products WHERE id=?', [id], (err, productResult) => {
+            if(err) return callback(err);
+            if(productResult.length === 0) return callback(null, []);
+
+            const product = productResult[0];
+
+            db.query('SELECT size FROM product_variants WHERE product_id=?', [id], (err, sizeResult) => {
+                if(err) return callback(err);
+
+                const sizes = sizeResult.map(row => row.size);
+
+                product.sizes = sizes;
+
+                callback(null, [product]);
+            });
+        });
     },
 
     createProduct: (data, callback) => {

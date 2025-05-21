@@ -1,7 +1,8 @@
 const product = require('../models/productModel');
 
 exports.getAllProducts = (req, res) => {
-    product.getAllProduct((err, result) => {
+    const category_id = req.query.category_id;
+    product.getAllProduct(category_id, (err, result) => {
         if(err){
             res.status(500).json({ error: err.message });
         } else{
@@ -39,7 +40,7 @@ exports.updateProductById = (req, res) => {
         if(err){
             res.status(500).json({ error: err.message });
         } else{
-            res.status(201).json({ message: 'Product Update Successfully'});
+            res.status(200).json({ message: 'Product Update Successfully'});
         }
     })
 }
@@ -50,7 +51,7 @@ exports.deleteProductById = (req, res) => {
         if(err){
             res.status(500).json({ error: err.message });
         } else{
-            res.status(201).json({ message: 'Product Delete Successfully'});
+            res.status(200).json({ message: 'Product Delete Successfully'});
         }
     })
 }
@@ -71,7 +72,7 @@ exports.getSizeProduct = (req, res) => {
         if(err){
             res.status(500).json({ error: err.message });
         }else{
-            res.json(result[0]);
+            res.json(result);
         }
     })
 }
@@ -82,7 +83,7 @@ exports.deleteSize = (req, res) => {
         if(err){
             res.status(500).json({ error: err.message });
         }else{
-            res.status(201).json({ message: 'Size delete success' });
+            res.status(200).json({ message: 'Size delete success' });
         }
     })
 }

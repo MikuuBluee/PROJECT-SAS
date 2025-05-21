@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aerostreet</title>
-    <link rel="icon" type="image/png" href="assets/web-logo.png" />
+    <link rel="icon" type="image/png" href="assets/logo.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <style type="text/tailwindcss">
         @layer utilities{
@@ -35,92 +34,91 @@
 </head>
 <body class="font-[poppins]">
     <!-- Navigation -->
-    <nav id="navbar" class="bg-white py-4  fixed top-0 left-0 w-full  bg-opacity-100 shadow transition-all duration-300 z-50">
-        <div class="container mx-auto px-4 flex justify-between items-center">
-            <div class="flex items-center">
-                <a href="#" class="flex items-center">
-                    <img src="assets/logo-1.png" alt="" class="w-40">
-                </a>
-            </div>
+    <nav id="navbar" class="bg-white py-4 fixed top-0 left-0 w-full bg-opacity-100 shadow transition-all duration-300 z-50">
+      <div class="container mx-auto px-4 flex justify-between items-center">
+        <div class="flex items-center">
+          <a href="#hero" class="flex items-center">
+            <img src="assets/logo-1.png" alt="" class="w-40">
+          </a>
+        </div>
 
-            <!-- Hamburger Mobile -->
-            <div class="md:hidden flex items-center mr-10">
-              <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
-                <i class="fas fa-bars text-2xl"></i>
+        <!-- Hamburger Mobile -->
+        <div class="md:hidden flex items-center mr-10">
+          <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+
+  
+        <div class="hidden md:flex items-center space-x-8">
+          <ul class="flex items-center space-x-8">
+            <li class="relative group">
+              <a href="#category">
+                <button class="hover:text-blue-500 font-medium">Category</button>
+              </a>
+              <ul class="absolute left-0 mt-2 bg-white border rounded shadow-md opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform transition duration-200 invisible group-hover:visible">
+                <li><a href="top.html" class="block px-4 py-2 hover:bg-gray-100">Top</a></li>
+                <li><a href="bottom.html" class="block px-4 py-2 hover:bg-gray-100">Bottom</a></li>
+                <li><a href="footwear.html" class="block px-4 py-2 hover:bg-gray-100">Footwear</a></li>
+              </ul>
+            </li>
+            <li><a href="#hero" class="font-medium">Home</a></li>
+            <li><a href="#populer" class="font-medium">Populer</a></li>
+            <li><a href="login.html" class="font-medium bg-blue-950 w-20 text-center items-center py-2 rounded-lg px-3 text-white">Login</a></li>
+          </ul>
+        </div>
+
+        <!-- Search, account, cart -->
+        <div class="hidden md:flex items-center space-x-6">
+          <form id="search" class="relative" onsubmit="return true;">
+            <div class="relative">
+              <input type="text" id="searchInput" placeholder="Search Product" class="pl-4 pr-10 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-transparent w-64">
+              <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                <i class="fas fa-search text-gray-400"></i>
               </button>
             </div>
-            
-            <div class="hidden md:flex items-center space-x-8">
-                <div class="flex items-center">
-                    <li class="relative group list-none">
-                        <a href="#category">
-                            <button class="hover:text-blue-500 font-medium">Category</button>
-                        </a>
-                        
-                        <ul class="absolute left-0 mt-2 bg-white border rounded shadow-md opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform transition duration-200 invisible group-hover:visible">
-                          <li><a href="top.html" class="block px-4 py-2 hover:bg-gray-100">Top</a></li>
-                          <li><a href="bottom.html" class="block px-4 py-2 hover:bg-gray-100">Bottom</a></li>
-                          <li><a href="footwear.html" class="block px-4 py-2 hover:bg-gray-100">Footwear</a></li>
-                        </ul>
-                      </li>
-                </div>
-                <a href="#hero" class="font-medium">Home</a>
-                <a href="#populer" class="font-medium">Populer</a>
-                <a href="login.html" id="loginBtn" class="font-medium bg-blue-950 w-20 text-center items-center py-2 rounded-lg px-3 text-white">Login</a>
-            </div>
-            
-            <!-- Search, account, cart -->
-            <div class="hidden md:flex items-center space-x-6">
-              <form id="search" class="relative" onsubmit="return true;">
-                <div class="relative">
-                  <input type="text" id="searchInput" placeholder="Search Product" class="pl-4 pr-10 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-transparent w-64">
-                  <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                    <i class="fas fa-search text-gray-400"></i>
-                  </button>
-                </div>
-              </form>
-              <a href="profil.html" class="flex items-center">
-                <i class="far fa-user mr-1"></i>
-                <span>Account</span>
-              </a>
-              <a href="cart.html" class="flex items-center">
-                <i class="fas fa-shopping-cart mr-1"></i>
-                <span>Cart</span>
-              </a>
-            </div>
-          </div>
+          </form>
+          <a href="profil.html" class="flex items-center">
+            <i class="far fa-user mr-1"></i>
+            <span>Account</span>
+          </a>
+          <a href="cart.html" class="flex items-center">
+            <i class="fas fa-shopping-cart mr-1"></i>
+            <span>Cart</span>
+          </a>
         </div>
+      </div>
+
+      <!-- Menu -->
+      <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+        <ul class="space-y-2">
+          <li class="relative group">
+            <button class="hover:text-blue-500 font-medium w-full text-left">Category</button>
+            <ul class="mt-2 bg-white border rounded shadow-md">
+              <li><a href="top.html" class="block px-4 py-2 hover:bg-gray-100">Top</a></li>
+              <li><a href="bottom.html" class="block px-4 py-2 hover:bg-gray-100">Bottom</a></li>
+              <li><a href="footwear.html" class="block px-4 py-2 hover:bg-gray-100">Footwear</a></li>
+            </ul>
+          </li>
+          <li><a href="#hero" class="block font-medium">Home</a></li>
+          <li><a href="#populer" class="block font-medium">Populer</a></li>
+          <li><a href="login.html" class="block font-medium bg-blue-950 w-full text-center py-2 rounded-full text-white">Login</a></li>
+          <li>
+            <form class="mt-2 relative">
+              <input type="text" placeholder="Search Product" class="pl-4 pr-10 py-2 w-full rounded-full border border-gray-300 focus:outline-none">
+              <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                <i class="fas fa-search text-gray-400"></i>
+              </button>
+            </form>
+          </li>
+          <li><a href="profil.html" class="flex items-center mt-2"><i class="far fa-user mr-1"></i><span>Account</span></a></li>
+          <li><a href="cart.html" class="flex items-center"><i class="fas fa-shopping-cart mr-1"></i><span>Cart</span></a></li>
+        </ul>
+      </div>
     </nav>
 
-    <!-- Menu -->
-    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
-      <ul class="space-y-2">
-        <li class="relative group">
-          <button class="hover:text-blue-500 font-medium w-full text-left">Category</button>
-          <ul class="mt-2 bg-white border rounded shadow-md">
-            <li><a href="top.html" class="block px-4 py-2 hover:bg-gray-100">Top</a></li>
-            <li><a href="bottom.html" class="block px-4 py-2 hover:bg-gray-100">Bottom</a></li>
-            <li><a href="footwear.html" class="block px-4 py-2 hover:bg-gray-100">Footwear</a></li>
-          </ul>
-        </li>
-        <li><a href="#hero" class="block font-medium">Home</a></li>
-        <li><a href="#populer" class="block font-medium">Populer</a></li>
-        <li><a href="login.html" class="block font-medium bg-blue-950 w-full text-center py-2 rounded-full text-white">Login</a></li>
-        <li>
-          <form class="mt-2 relative">
-            <input type="text" placeholder="Search Product" class="pl-4 pr-10 py-2 w-full rounded-full border border-gray-300 focus:outline-none">
-            <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
-              <i class="fas fa-search text-gray-400"></i>
-            </button>
-          </form>
-        </li>
-        <li><a href="profil.html" class="flex items-center mt-2"><i class="far fa-user mr-1"></i><span>Account</span></a></li>
-        <li><a href="cart.html" class="flex items-center"><i class="fas fa-shopping-cart mr-1"></i><span>Cart</span></a></li>
-      </ul>
-    </div>
-
     <!-- Hero Section -->
-    <section class="bg-light-blue relative overflow-hidden mt-10" id="hero">
+    <section class="relative overflow-hidden mt-10" id="hero">
         <div class="container mx-auto rounded-md">
             <div class="swiper heroSwiper">
                 <div class="swiper-wrapper">
@@ -136,8 +134,9 @@
                 </div>               
             </div>
     </section>
+
     <!-- Category -->
-     <section id="category">
+    <section id="category">
         <div class="container mx-auto px-2 py-16  ">
             <h2 class="text-5xl text-primary-green mb-8 text-center text-stroke-2 uppercase font-extrabold">Category</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 ">  
@@ -157,15 +156,15 @@
                     </div>      
                 </div>
         </div>
-     </section>
+    </section>
 
-     <!-- Best Seller -->
-      <section class="px-6 py-12 " id="populer">
+    <!-- Best Seller -->
+    <section class="px-6 py-12 " id="populer">
         <h2 class="text-5xl text-stroke-2 uppercase font-extrabold text-center justify-center mb-10">Paling populer</h2>
     
         <div id="scrollContainer"
-            class="flex gap-6 overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing scroll-smooth mb-4">
-            <!-- Card-1 -->
+             class="flex gap-6 overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing scroll-smooth mb-4">
+             <!-- Card-1 -->
           <div onclick="showModal('Aerostreet X One Piece', 'Sepatu keren dan modis untuk gaya keren mu', 'assets/AerostreetXonepiece.png', '230000')" 
               class="min-w-[300px] bg-white rounded-xl shadow p-4 flex-shrink-0 cursor-pointer hover:shadow-lg transition relative">
 
@@ -195,7 +194,7 @@
             </div>
           </div>
 
-        <!-- card-2 -->
+         <!-- card-2 -->
           <div onclick="showModal('Aerostreet X Joker', 'Gaya Keren dan Unik Segera Dapatkan', 'assets/x-joker.png', '500000')" 
               class="min-w-[300px] bg-white rounded-xl shadow p-4 flex-shrink-0 cursor-pointer hover:shadow-lg transition relative">
 
@@ -344,7 +343,7 @@
           </div>
           </div>
         <!-- MODAL -->
-      <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+       <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
         <div class="bg-white rounded-lg shadow-lg w-[90%] max-w-4xl p-6 relative flex flex-col md:flex-row gap-6">
           
           <!-- Tombol Close -->
@@ -362,7 +361,7 @@
             <p id="modal-price" class="text-lg font-semibold text-blue-600 mb-4"></p>
 
           <!-- Ukuran -->
-          <div class="mb-4">
+           <div class="mb-4">
             <h3 class="text-md font-semibold mb-2">Pilih Ukuran</h3>
             <div id="size-options" class="flex gap-2 flex-wrap">
               <button onclick="selectSize(this)" data-size="S" class="size-btn border border-gray-300 px-3 py-1 rounded hover:border-blue-500">S</button>
@@ -389,83 +388,83 @@
 
     <!-- ulasan -->
     <section class="bg-white py-8 md:py-16 px-4">
-      <div class="container mx-auto">
-        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-8 md:mb-10 text-stroke-2 uppercase">Ulasan</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4">
-          <!-- Testimoni Card 1-->
-          <div class="bg-white text-black rounded-xl p-4 md:p-6 shadow-lg mx-auto w-full max-w-sm">
-            <div class="flex space-x-1 mb-3 md:mb-4 text-yellow-400 text-sm md:text-base">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-              <i class="fas fa-star"></i><i class="fas fa-star"></i>
-            </div>
-            <p class="text-xs md:text-sm mb-3 md:mb-4 leading-relaxed">
-              "Sangat Keren Product nya saya sangat suka sekali dengan kualitas nya yang sangat bagus dan harganya yang sangat murah"
-            </p>
-            <div class="flex items-center mt-2 md:mt-4">
-              <img src="/assets/pp-anime-4.jpg" alt="Olivia" class="w-8 h-8 md:w-10 md:h-10 rounded-full mr-2 md:mr-3">
-              <div>
-                <h4 class="text-xs md:text-sm font-semibold">Dicky Widya P.</h4>
-                <p class="text-xxs md:text-xs text-gray-500">Programer</p>
-              </div>
-            </div>
-          </div>
-    
-          <!-- Testimoni Card 2-->
-          <div class="bg-white text-black rounded-xl p-4 md:p-6 shadow-lg mx-auto w-full max-w-sm">
-            <div class="flex space-x-1 mb-3 md:mb-4 text-yellow-400 text-sm md:text-base">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-              <i class="fas fa-star"></i><i class="fas fa-star"></i>
-            </div>
-            <p class="text-xs md:text-sm mb-3 md:mb-4 leading-relaxed">
-              "Sepatu nya sangat nyaman dan kualitasnya juara"
-            </p>
-            <div class="flex items-center mt-2 md:mt-4">
-              <img src="assets/pp-anime-3.jpg" alt="Olivia" class="w-8 h-8 md:w-10 md:h-10 rounded-full mr-2 md:mr-3">
-              <div>
-                <h4 class="text-xs md:text-sm font-semibold">Erzha fadhilla P</h4>
-                <p class="text-xxs md:text-xs text-gray-500">Brain Rot OFC</p>
-              </div>
-            </div>
-          </div>
-    
-          <!-- Testimoni Card 3-->
-          <div class="bg-white text-black rounded-xl p-4 md:p-6 shadow-lg mx-auto w-full max-w-sm">
-            <div class="flex space-x-1 mb-3 md:mb-4 text-yellow-400 text-sm md:text-base">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-            <p class="text-xs md:text-sm mb-3 md:mb-4 leading-relaxed">
-              "Celananya sangat bagus dan harganya murah sekali"
-            </p>
-            <div class="flex items-center mt-2 md:mt-4">
-              <img src="assets/pp-anime-2.jpg" alt="Olivia" class="w-8 h-8 md:w-10 md:h-10 rounded-full mr-2 md:mr-3">
-              <div>
-                <h4 class="text-xs md:text-sm font-semibold">Bayu Surya Dinata</h4>
-                <p class="text-xxs md:text-xs text-gray-500">AI Master</p>
-              </div>
-            </div>
-          </div>
-    
-          <!-- Testimoni Card 4-->
-          <div class="bg-white text-black rounded-xl p-4 md:p-6 shadow-lg mx-auto w-full max-w-sm">
-            <div class="flex space-x-1 mb-3 md:mb-4 text-yellow-400 text-sm md:text-base">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-              <i class="fas fa-star"></i><i class="fas fa-star"></i>
-            </div>
-            <p class="text-xs md:text-sm mb-3 md:mb-4 leading-relaxed">
-              "Aku suka kualitas baju nya , sangat bagus dan nyaman"
-            </p>
-            <div class="flex items-center mt-2 md:mt-4">
-              <img src="assets/pp-anime-1.jpg" alt="Olivia" class="w-8 h-8 md:w-10 md:h-10 rounded-full mr-2 md:mr-3">
-              <div>
-                <h4 class="text-xs md:text-sm font-semibold">Rejo Wiranata</h4>
-                <p class="text-xxs md:text-xs text-gray-500">Interpreneur</p>
-              </div>
-            </div>
+  <div class="container mx-auto">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-8 md:mb-10 text-stroke-2 uppercase">Ulasan</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4">
+      <!-- Testimoni Card 1-->
+      <div class="bg-white text-black rounded-xl p-4 md:p-6 shadow-lg mx-auto w-full max-w-sm">
+        <div class="flex space-x-1 mb-3 md:mb-4 text-yellow-400 text-sm md:text-base">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="text-xs md:text-sm mb-3 md:mb-4 leading-relaxed">
+          "Sangat Keren Product nya saya sangat suka sekali dengan kualitas nya yang sangat bagus dan harganya yang sangat murah"
+        </p>
+        <div class="flex items-center mt-2 md:mt-4">
+          <img src="/assets/pp-anime-4.jpg" alt="Olivia" class="w-8 h-8 md:w-10 md:h-10 rounded-full mr-2 md:mr-3">
+          <div>
+            <h4 class="text-xs md:text-sm font-semibold">Dicky Widya P.</h4>
+            <p class="text-xxs md:text-xs text-gray-500">Programer</p>
           </div>
         </div>
       </div>
-        </section>
+
+      <!-- Testimoni Card 2-->
+      <div class="bg-white text-black rounded-xl p-4 md:p-6 shadow-lg mx-auto w-full max-w-sm">
+        <div class="flex space-x-1 mb-3 md:mb-4 text-yellow-400 text-sm md:text-base">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="text-xs md:text-sm mb-3 md:mb-4 leading-relaxed">
+          "Sepatu nya sangat nyaman dan kualitasnya juara"
+        </p>
+        <div class="flex items-center mt-2 md:mt-4">
+          <img src="assets/pp-anime-3.jpg" alt="Olivia" class="w-8 h-8 md:w-10 md:h-10 rounded-full mr-2 md:mr-3">
+          <div>
+            <h4 class="text-xs md:text-sm font-semibold">Erzha fadhilla P</h4>
+            <p class="text-xxs md:text-xs text-gray-500">Brain Rot OFC</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimoni Card 3-->
+      <div class="bg-white text-black rounded-xl p-4 md:p-6 shadow-lg mx-auto w-full max-w-sm">
+        <div class="flex space-x-1 mb-3 md:mb-4 text-yellow-400 text-sm md:text-base">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <p class="text-xs md:text-sm mb-3 md:mb-4 leading-relaxed">
+          "Celananya sangat bagus dan harganya murah sekali"
+        </p>
+        <div class="flex items-center mt-2 md:mt-4">
+          <img src="assets/pp-anime-2.jpg" alt="Olivia" class="w-8 h-8 md:w-10 md:h-10 rounded-full mr-2 md:mr-3">
+          <div>
+            <h4 class="text-xs md:text-sm font-semibold">Bayu Surya Dinata</h4>
+            <p class="text-xxs md:text-xs text-gray-500">AI Master</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimoni Card 4-->
+      <div class="bg-white text-black rounded-xl p-4 md:p-6 shadow-lg mx-auto w-full max-w-sm">
+        <div class="flex space-x-1 mb-3 md:mb-4 text-yellow-400 text-sm md:text-base">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="text-xs md:text-sm mb-3 md:mb-4 leading-relaxed">
+          "Aku suka kualitas baju nya , sangat bagus dan nyaman"
+        </p>
+        <div class="flex items-center mt-2 md:mt-4">
+          <img src="assets/pp-anime-1.jpg" alt="Olivia" class="w-8 h-8 md:w-10 md:h-10 rounded-full mr-2 md:mr-3">
+          <div>
+            <h4 class="text-xs md:text-sm font-semibold">Rejo Wiranata</h4>
+            <p class="text-xxs md:text-xs text-gray-500">Interpreneur</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    </section>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-gray-200 mt-10 -my-10">
@@ -514,193 +513,10 @@
     &copy; Project SAS 2025. Kelompok 3.
   </div>
     </footer>
-     
- 
-    
+
      <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-     <script>
-      // Swiper
-      const swiper = new Swiper(".heroSwiper", {
-      loop: true,
-      autoplay: {
-        delay: 2000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
+     <script src="/main.js"></script>
+    
 
-    // Navbar scroll
-    const navbar = document.getElementById("navbar");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
-        navbar.classList.remove("bg-opacity-100");
-        navbar.classList.add("bg-opacity-80", "backdrop-blur");
-      } else {
-        navbar.classList.remove("bg-opacity-80", "backdrop-blur");
-        navbar.classList.add("bg-opacity-100");
-      }
-    });
-
-    // search
-    const form = document.getElementById("search");
-    const input = document.getElementById("searchInput");
-    const result = document.getElementById("searchResult");
-
-    form.addEventListener("submit", function(e) {
-      e.preventDefault(); // Hindari reload halaman
-      const keyword = input.value.trim();
-      if (keyword) {
-        result.textContent = `Kamu mencari: "${keyword}"`;
-        // Bisa juga lakukan pencarian di sini atau redirect
-        // window.location.href = "/search?q=" + encodeURIComponent(keyword);
-      } else {
-        result.textContent = "Silakan isi kata kunci pencarian.";
-      }
-    });
-
-    // slide card
-    const slider = document.getElementById('scrollContainer');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    slider.addEventListener('mousedown', (e) => {
-      isDown = true;
-      slider.classList.add('active');
-      startX = e.pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
-    });
-
-    slider.addEventListener('mouseleave', () => {
-      isDown = false;
-      slider.classList.remove('active');
-    });
-
-    slider.addEventListener('mouseup', () => {
-      isDown = false;
-      slider.classList.remove('active');
-    });
-
-    slider.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      slider.scrollLeft = scrollLeft - walk;
-    });
-
-    // hamburger
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    mobileMenuButton.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-
-    // modal
-    function showModal(name, desc, image, price) {
-      document.getElementById('modal-title').innerText = name;
-      document.getElementById('modal-desc').innerText = desc;
-      document.getElementById('modal-img').src = image;
-      document.getElementById('modal-price').innerText = "Rp " + Number(price).toLocaleString("id-ID");
-
-      document.getElementById('modal').classList.remove('hidden');
-      document.getElementById('modal').classList.add('flex');
-    }
-
-    function closeModal() {
-      document.getElementById('modal').classList.remove('flex');
-      document.getElementById('modal').classList.add('hidden');
-    }
-
-    function addToCart() {
-     Swal.fire({
-    title: 'Mantap Boss',
-    text: 'Produk Sudah Nambah di keranjang tuh!.',
-    icon: 'success',
-    showConfirmButton: false,
-    timer: 2000,
-    toast: true,
-    position: 'top'
-  });
-    closeModal();
-  }
-
-  function buyNow() {
-  Swal.fire({
-    title: 'Berhasil!',
-    text: 'Produk Berhasil Di Amankan. Lanjut ke Pembayaran?',
-    icon: 'success',
-    showCancelButton: true,
-    confirmButtonText: 'Ya, Beli Dong',
-    cancelButtonText: 'Coba Cari yang lain'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      window.location.href = '/Payment';
-    }
-  });
-}
-
-    // Button Suka
-    function toggleLove(btn) {
-      const svg = btn.querySelector("svg");
-      const isActive = svg.getAttribute("fill") === "red";
-
-      if (isActive) {
-        svg.setAttribute("fill", "none");
-        svg.setAttribute("stroke", "gray");
-      } else {
-        svg.setAttribute("fill", "red");
-        svg.setAttribute("stroke", "red");
-      }
-    }
-
-    // cek token session
-    document.addEventListener("DOMContentLoaded", async () => {
-      try{
-        const token = localStorage.getItem('token');
-
-        if(!token){
-          console.log('Belum login');
-          return window.location.href = '/login.html';
-        }
-
-        const response = await axios.get('http://localhost:5000/auth/check-session', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-
-        if(response.data.loggedIn) {
-          console.log('sudah login sebagai: ', response.data.user);
-          document.getElementById('loginBtn').textContent = 'Logout';
-          if(token){
-            loginBtn.textContent = 'Logout';
-            
-            loginBtn.addEventListener('click', () => {
-              localStorage.removeItem('token');
-              window.location.href = '/login.html';
-            })
-          }
-        } else{
-          console.log('session expired atau tidak valid');
-          localStorage.removeItem('token');
-          window.location.href = '/login.html';
-        }
-      } catch(error){
-        console.log("error saat login: ", error);
-        localStorage.removeItem('token');
-        window.location.href = '/login.html'
-      }
-    });
-     </script>
  </body>
  </html>

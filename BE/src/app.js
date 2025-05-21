@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 require('dotenv').config();
 
 const db = require('./config/db');
@@ -16,6 +17,13 @@ const authRoutes = require('./routes/authRoutes');
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+
+app.use(session({
+    secret: 'rahasia@123',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {secure: false}
+}));
 
 app.use(express.static(path.join(__dirname, '../../FE')));
 

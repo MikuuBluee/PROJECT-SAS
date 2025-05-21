@@ -3,46 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil</title>
-    <style>
-        .container{
-            display: flex;
+    <title>profil2</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>  
+    <script>
+        tailwind.config = {
+            theme: {
+            extend: {
+                colors: {
+                    c1: '#F1EFEC',
+                    c2: '#D4C9BE',
+                    c3: '#123458',   // Contoh warna kustom
+                    }
+                }
+            }
         }
-        .deskripsi-profil{
-            text-align: center;
-            justify-content: center;
-        }
-    </style>
+    </script>
 </head>
 <body>
-    <div class="container">
-        <div class="menu">
-            <a href="#"><img src="/picture-simbol-profil/arrow-left.png" alt=""><a href="#">kembali</a></a>
-            <a href="#">Profil</a>
-            <a href="#">Pengaturan</a>
-            <a href="#">Bantuan</a>
+    <!-- bg -->
+    <div class="min-h-screen flex item items-center justify-center bg-c1 font-sans bg-[url('assets/bg.jpeg')] relative">
+        
+        <a class="bg-white text-white shadow-2xl rounded-lg transition duration-200 focus:outline-2 focus:outline-offset-2 focus:outline-gray-400 active:bg-gray-200 absolute top-10 left-10 " href="index.html">
+            <img src="/assets/Logo_Aerostreet.png" alt="" width="80">
+        </a>
+        
+        <div class="div">
         </div>
+        <!-- display -->
+        <main class="flex flex-col item items-center justify-center rounded-2xl">
+            <!-- kanan -->  
+            <all class="flex bg-white pl-20 pr-20 pt-21 pb-21 rounded-2xl border border-gray-300 shadow-2xl shadow-gray-500">
+                <kanan class="flex-shrink-0 flex flex-col item items-center justify-center w-110 pr-5 text-center gap-3 border-r border-gray-300">
+                    <img src="/assets/pp-anime-1.jpg" alt="Foto profil" class="w-80 h-80 rounded-lg mx-auto mb-5 shadow-2xl shadow-gray-400" />
+                    <div class="flex">
+                    <a class="p-6 bg-c3 text-white py-2 shadow-xl/15 rounded-lg transition duration-200 ease-in-out hover:bg-blue-900 focus:outline-2 focus:outline-offset-2 focus:outline-gray-400 active:bg-blue-950" href="profil-edit.html">Edit Profil</a>
 
-        <div class="tampilan-profil">
-             <div class="menu-profil">
-                <p>profil</p>
-                <img src="/picture-simbol-profil/icon-pensil.png" alt="">
-             </div>
-             <div class="deskripsi-profil">
-                <img src="picture-simbol-profil/fff&text=gambar+profil.png" alt="">
-                <form>
-                    <textarea name="" id="">bio</textarea>
-                    <label for="nama-depan">Nama Depan:</label><br>
-                    <input type="text" id="nama-depan" name="nama-depan"><br>
-                    <label for="nama-belakang">Nama Belakang:</label><br>
-                    <input type="text" id="nama-belakang" name="nama-belakang">
-                    <label for="email">email:</label><br>
-                    <input type="email" id="email" name="email">
-                    <label for="nomer">Nomer</label><br>
-                    <input type="number" id="nomer" name="nomer">
-                  </form>
-             </div>
-        </div>
+                    </div>
+                </kanan>
+                <isi class="flex flex-col gap-3 w-full pl-10">
+                    
+                                <div class="flex flex-col">
+                                    <label class="text-lg font-sm font-semibold">Username</label>
+                                    <label type="text" class="w-105 shadow rounded-lg p-1 font-sm">color-contol</label>
+                                </div>
+                                <div class="flex flex-col">
+                                    <label class="text-lg font-sm font-semibold ">Nama</label>
+                                    <label type="text" class="w-105 shadow rounded-lg p-1 ">anda</label>
+                                </div>
+                                <div class="flex flex-col">
+                                    <label class="text-lg font-sm font-semibold">Nomer Telepon</label>
+                                    <label type="text" class="w-105 shadow rounded-lg p-1 ">08xx-xxxx-xxxx</label>
+                                </div>
+                                <div class="flex flex-col">
+                                    <label class="text-lg font-sm font-semibold">Email</label>
+                                    <label type="email" class="w-105 shadow rounded-lg p-1 ">colorcontol@gmail.com</label>
+                                </div>
+                                <div class="flex flex-col">
+                                    <label class="text-lg font-sm font-semibold">Password</label>
+                                    <label type="password" class="w-105 shadow rounded-lg p-1 ">********</label>
+                                </div>
+                                <div class="flex flex-col">
+                                    <label class="text-lg font-sm font-semibold">Alamat</label>
+                                    <label type="password" class="w-105 shadow rounded-lg p-1 ">desa contol</label>
+                                </div>
+                                
+                </isi>
+
+            </all>
+
+
+
+        </main>
+
+
     </div>
 </body>
 </html>

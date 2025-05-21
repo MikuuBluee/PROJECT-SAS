@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semua Produk - Toko Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tambahkan Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.5/dist/purify.min.js"></script>x`
+    <style>
+        .product-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+  <nav id="navbar" class="bg-white py-4  fixed top-0 left-0 w-full  bg-opacity-100 shadow transition-all duration-300 z-50">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+        <div class="flex items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="assets/logo.png" alt="" class="w-40">
+            </a>
+        </div>
+        
+        <div class="hidden md:flex items-center space-x-8">
+            <div class="flex items-center">
+                <li class="relative group list-none">
+                    <a href="#category">
+                        <button class="hover:text-blue-500 font-medium">Category</button>
+                    </a>
+                    
+                    <ul class="absolute left-0 mt-2 bg-white border rounded shadow-md opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform transition duration-200 invisible group-hover:visible">
+                      <li><a href="top.html" class="block px-4 py-2 hover:bg-gray-100">Top</a></li>
+                      <li><a href="bottom.html" class="block px-4 py-2 hover:bg-gray-100">Bottom</a></li>
+                      <li><a href="footwear.html" class="block px-4 py-2 hover:bg-gray-100">Footwear</a></li>
+                    </ul>
+                  </li>
+            </div>
+            <a href="#hero" class="font-medium">Home</a>
+            <a href="#populer" class="font-medium">Populer</a>
+        </div>
+        
+        <div class="flex items-center space-x-6">
+            <div class="relative" id="search">
+                <input type="text" id="searchInput" placeholder="Search Product" class="pl-4 pr-10 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-transparent w-64">
+                <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                    <i class="fas fa-search text-gray-400"></i>
+                </button>
+            </div>
+            <div id="searchResult" class="mt-4 text-lg text-gray-700"></div>
+            
+            <a href="profil.html" class="flex items-center">
+                <i class="far fa-user mr-1"></i>
+                <span>Account</span>
+            </a>
+            
+            <a href="#" class="flex items-center">
+                <i class="fas fa-shopping-cart mr-1"></i>
+                <span>Cart</span>
+            </a>
+        </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <section class="my-20">
+    <div class="container mx-auto px-4 py-8">
+      <h1 class="text-3xl font-bold mb-8 flex items-center justify-center uppercase">Semua Produk</h1>
+      
+      <!-- Product Grid (DINAMIS) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4" id="productContainer">
+          <!-- Produk akan diisi via JavaScript -->
+      </div>
+    </div>
+
+    <div id="productModal" class="modal flex justify-center items-center">
+      <div class="modal-content bg-white rounded-md p-6 w-[90%] max-w-4xl shadow-lg relative">
+        <span class="close absolute top-4 right-6 text-2xl cursor-pointer" onclick="closeModal()">&times;</span>
+    
+        <!-- Kontainer Flex: Gambar Kiri, Keterangan Kanan -->
+        <div class="flex flex-col md:flex-row gap-6">
+          
+          <!-- KIRI: Gambar Produk -->
+          <div class="w-full md:w-1/2 flex justify-center items-center">
+            <img id="modalImage" src="placeholder.svg" alt="Product Image" class="w-full max-h-96 object-contain rounded-md">
+          </div>
+    
+          <!-- KANAN: Informasi Produk -->
+          <div class="w-full md:w-1/2">
+            <h2 id="modalTitle" class="text-2xl font-bold mb-4 uppercase"></h2>
+    
+            <!-- Harga -->
+            <div class="mb-4">
+              <p class="text-sm font-semibold text-gray-800 mb-2">Harga:</p>
+              <div class="flex items-center gap-2">
+                <p id="modalPrice" class="text-2xl font-bold text-green-600"></p>
+                <p id="modalOriginalPrice" class="text-sm text-gray-500 line-through"></p>
+              </div>
+            </div>
+    
+            <!-- Deskripsi -->
+            <div class="mb-4">
+              <p class="text-sm font-semibold text-gray-800 mb-2">Deskripsi:</p>
+              <p id="modalDescription" class="text-gray-700"></p>
+            </div>
+    
+            <!-- Size -->
+            <div class="mb-4 mt-6">
+              <p class="text-sm font-semibold text-gray-800 mb-2">Pilih Ukuran:</p>
+              <div id="modalSize" class="flex flex-wrap gap-2"></div>
+            </div>
+    
+            <!-- Tombol -->
+            <div class="flex flex-wrap gap-4 mt-10">
+              <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500" onclick="buyNow()">Beli</button>
+              <button class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700" onclick="addToChart()">Keranjang</button>
+            </div>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+    
+   
+  </section>
+
+<script>
+// Fungsi utama: Ambil data produk saat halaman load
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const response = await axios.get('http://localhost:5000/products?category_id=2');
+    renderProducts(response.data);
+  } catch (error) {
+    console.error('Gagal memuat produk:', error);
+    alert('Gagal memuat produk!');
+  }
+});
+
+// Render produk ke HTML
+function renderProducts(products) {
+  const container = document.getElementById('productContainer');
+  
+  container.innerHTML = products.map(product => `
+    <div class="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" 
+         onclick="openModal(${product.id})">
+      <div class="relative">
+        <img src="${product.image_url}" alt="${product.nama}" 
+             class="w-full h-48 object-cover"> 
+      </div>
+      <div class="p-4">
+        <div class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-sm mb-2 w-fit">
+          Beli Lokal
+        </div>
+        <h3 class="text-sm font-medium mb-1">${product.nama}</h3>
+        <p class="text-lg font-bold">Rp${product.harga.toLocaleString('id-ID')}</p>
+        <p class="text-xs text-gray-500 line-through">Rp${(product.harga * 2).toLocaleString('id-ID')}</p>
+        <span class="text-xs text-red-500 font-bold">50%</span>
+        <p class="text-xs text-gray-500 mt-1">Stok: ${product.stock}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+const modal = document.getElementById("productModal");
+
+async function openModal(productId) {
+  try {
+    const [productRes, sizesRes] = await Promise.all([
+      axios.get(`/products/${productId}`),
+      axios.get(`/products/size?product_id=${productId}`)
+    ]);
+
+    const product = productRes.data;
+    const sizes = sizesRes.data;
+
+    document.getElementById("modalTitle").textContent = product.nama;
+
+    console.log('isi Product: ', product);
+    const modalPrice = document.getElementById("modalPrice");
+    if(product.harga !== undefined && product.harga !== null){
+      const hargaNumber = Number(product.harga);
+      modalPrice.textContent = `Rp${hargaNumber.toLocaleString('id-ID')}`;
+    } else{
+      modalPrice.textContent = "Harga tidak tersedia";
+    }
+
+    document.getElementById("modalOriginalPrice").textContent = product.original_price 
+      ? `Rp${product.original_price.toLocaleString('id-ID')}`
+      : '';
+    document.getElementById("modalDescription").innerHTML = DOMPurify.sanitize(product.description);
+    document.getElementById("modalImage").src = product.image_url;
+
+    const sizeContainer = document.getElementById('modalSize');
+    sizeContainer.innerHTML = ""; 
+    product.sizes.forEach(size => {
+      const sizeBtn = document.createElement('button');
+      sizeBtn.textContent = size;
+      sizeBtn.className = 'px-3 py-1 border rounded hover:bg-gray-200';
+      sizeBtn.onclick = () => {
+        document.querySelectorAll('#modalSize button').forEach(btn => btn.classList.remove('bg-gray-300'));
+        sizeBtn.classList.add('bg-gray-300');
+        selectedsize = size;
+      };
+      sizeContainer.appendChild(sizeBtn);
+    });
+
+    selectedProduct = product;
+    selectedsize = null;
+    modal.style.display = "block";
+  } catch (error) {
+    console.error('Error buka modal:', error);
+    alert(`Gagal memuat detail produk: ${error.response?.data?.message || error.message}`);
+  }
+}
+
+function closeModal() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    closeModal();
+  }
+}
+</script>
+
+</body>
+</html>
