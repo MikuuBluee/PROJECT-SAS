@@ -20,12 +20,12 @@ const product = {
 
             const product = productResult[0];
 
-            db.query('SELECT size FROM product_variants WHERE product_id=?', [id], (err, sizeResult) => {
+            db.query('SELECT id AS variant_id, size, stock FROM product_variants WHERE product_id=?', [id], (err, variantResult) => {
                 if(err) return callback(err);
 
-                const sizes = sizeResult.map(row => row.size);
+                // const sizes = sizeResult.map(row => row.size);
 
-                product.sizes = sizes;
+                product.variants = variantResult;
 
                 callback(null, [product]);
             });

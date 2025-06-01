@@ -225,15 +225,16 @@ async function openModal(productId) {
     document.getElementById("modalImage").src = product.image_url;
 
     const sizeContainer = document.getElementById('modalSize');
-    sizeContainer.innerHTML = ""; 
-    product.sizes.forEach(size => {
+    sizeContainer.innerHTML = "";
+    let selectedsize = null; 
+    product.variants.forEach(variant => {
       const sizeBtn = document.createElement('button');
-      sizeBtn.textContent = size;
+      sizeBtn.textContent = variant.size;
       sizeBtn.className = 'px-3 py-1 border rounded hover:bg-gray-200';
       sizeBtn.onclick = () => {
         document.querySelectorAll('#modalSize button').forEach(btn => btn.classList.remove('bg-gray-300'));
         sizeBtn.classList.add('bg-gray-300');
-        selectedsize = size;
+        selectedsize = variant;
       };
       sizeContainer.appendChild(sizeBtn);
     });
@@ -254,6 +255,22 @@ function closeModal() {
 window.onclick = function(event) {
   if (event.target == modal) {
     closeModal();
+  }
+}
+
+async function addToChart(user_id, variant_id, jumlah_barang){
+  try{
+    const res = await axios.post('http://localhost:5000/charts/', {
+      user_id: user_id,
+      variant_id: variant_id,
+      jumlah_barang: jumlah_barang
+    });
+
+    alert('berhasil menambahkan ke keranjang');
+    console.log(res.data);
+  } catch(error){
+    alert('Gagal menambahkan ke keranjang');
+    console.log(error.response?.data || error.message)
   }
 }
 </script>
